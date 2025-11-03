@@ -1,0 +1,52 @@
+project:
+  type: website
+
+website:
+  description: "Ottimizzazione dei parametri di un processo manifatturiero"
+  site-url: "https://pbosetti.github.io/OptPar"
+  draft-mode: unlinked
+  back-to-top-navigation: true
+  reader-mode: true
+  page-footer: 
+    left: "Paolo Bosetti, [BY-NC-SA4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)" 
+  navbar:
+    left:
+      - text: "Presentations"
+        menu:
+          - href: presentations/intro.qmd
+            text: "Intro"
+    right:
+      - href: about.qmd
+        text: "{{< bi question-circle-fill >}} About"
+      - icon: github
+        menu:
+          - text: Source Code
+            href:  https://github.com/pbosetti/OptPar
+
+format:
+  html:
+    toc: true
+    email-obfuscation: "javascript"
+    theme: 
+      - flatly
+      - brand
+      - custom.scss
+  revealjs:
+    theme: [default, presentations/slides.scss]
+    width: 1280
+    height: 720
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    chalkboard: true
+    footer: "MADS --- [https://pbosetti.github.io/OptPar](https://pbosetti.github.io/OptPar)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+    touch: true
+    email-obfuscation: javascript
+    pdf-separate-fragments: true
+    link-external-icon: true
+    lang: en-EN

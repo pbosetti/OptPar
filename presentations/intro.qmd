@@ -1,0 +1,26 @@
+---
+title: "Ottimizzazione dei parametri di un processo manifatturiero"
+subtitle: "Introduzione al corso"
+author: "Paolo Bosetti"
+institute: "Università di Trento"
+date: 2025-11-03
+date-format: "DD MMMM YYYY"
+lang: it
+draft: false
+categories: [intro, meeting]
+format: revealjs
+abstract: |
+  A high level introduction to the MADS Framework.
+# filters:
+#   - github-corner
+# github-corner:
+#   url: "https://www.github.com/pbosetti/mads"
+#   logo-color: "white"
+#   background-color: "#1c84e5"
+#   size: 150
+#   position: "left"
+---
+
+
+# What is it?
+

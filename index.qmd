@@ -1,0 +1,10 @@
+---
+title: Ottimizzazione dei parametri di un processo manifatturiero
+author: Paolo Bosetti
+affiliation: Università di Trento
+date: 3/11/2025
+date-modified: today
+lang: it
+---
+
+# test

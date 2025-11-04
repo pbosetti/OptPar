@@ -5,6 +5,11 @@ affiliation: Università di Trento
 date: 3/11/2025
 date-modified: today
 lang: it
+format: html
 ---
 
-# test
+Questo mini-sito raccoglie il materiale di studio per il corso organizzato nell'ambito del Percorso Formativo Abilitante.
+
+Il materiale è organizzato in **presentazioni interattive online**. Le presentazioni sono navigabili da browser: premendo il tasto `[?]` viene visualizzato l'elenco delle scorciatoie da tastiera.
+
+Il sito è **ricercabile**: la lente di ingrandimento {{< bi search >}}} in alto a destra si accede allo strumento di ricerca che consulta anche le singole presentazioni.

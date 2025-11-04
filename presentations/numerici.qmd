@@ -1,0 +1,23 @@
+---
+title: "Ottimizzazione dei parametri di un processo manifatturiero"
+subtitle: "Metodi numerici"
+author: "Paolo Bosetti"
+institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+date: 2025-11-03
+date-modified: today
+date-format: "DD MMMM YYYY"
+lang: it
+draft: false
+categories: [intro, meeting]
+format: revealjs
+---
+
+
+## Contenuti del corso
+
+* Ottimizzazione: cosa significa?
+* Metodi analitici
+* Metodi numerici
+* Metodi sperimentali
+
+

@@ -3,7 +3,8 @@ project:
 
 website:
   description: "Ottimizzazione dei parametri di un processo manifatturiero"
-  site-url: "https://pbosetti.github.io/OptPar"
+  # site-url: "https://pbosetti.github.io/OptPar"
+  site-path: "/OptPar"
   draft-mode: unlinked
   back-to-top-navigation: true
   reader-mode: true
@@ -11,10 +12,16 @@ website:
     left: "Paolo Bosetti, [BY-NC-SA4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)" 
   navbar:
     left:
-      - text: "Presentations"
+      - text: "Presentazioni"
         menu:
           - href: presentations/intro.qmd
-            text: "Intro"
+            text: "Introduzione"
+          - href: presentations/analitici.qmd
+            text: "Metodi analitici"
+          - href: presentations/numerici.qmd
+            text: "Metodi numerici"
+          - href: presentations/sperimentali.qmd
+            text: "Metodi sperimentali"
     right:
       - href: about.qmd
         text: "{{< bi question-circle-fill >}} About"
@@ -41,7 +48,7 @@ format:
     code-annotations: below
     preview-links: auto
     chalkboard: true
-    footer: "MADS --- [https://pbosetti.github.io/OptPar](https://pbosetti.github.io/OptPar)"
+    footer: "MADS --- [https://pbosetti.github.io/OptPar](/OptPar)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300

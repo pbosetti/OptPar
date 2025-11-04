@@ -3,6 +3,7 @@ $main-color-light: scale-color($main-color, $lightness: +20%);
 $alt-color: complement($main-color, $space: hsl);
 $my-blue: $alt-color;
 $my-green: #23c142; 
+$my-red: #aa0030; 
 $math-color: #4223c1;
 $code-color: $my-green;
 

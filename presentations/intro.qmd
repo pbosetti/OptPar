@@ -2,25 +2,200 @@
 title: "Ottimizzazione dei parametri di un processo manifatturiero"
 subtitle: "Introduzione al corso"
 author: "Paolo Bosetti"
-institute: "Università di Trento"
+institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: 2025-11-03
+date-modified: today
 date-format: "DD MMMM YYYY"
 lang: it
 draft: false
 categories: [intro, meeting]
 format: revealjs
-abstract: |
-  A high level introduction to the MADS Framework.
-# filters:
-#   - github-corner
-# github-corner:
-#   url: "https://www.github.com/pbosetti/mads"
-#   logo-color: "white"
-#   background-color: "#1c84e5"
-#   size: 150
-#   position: "left"
 ---
 
+```{r setup}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
 
-# What is it?
+## Contenuti del corso
 
+* Ottimizzazione: cosa significa?
+* [Metodi analitici](analitici.qmd)
+* [Metodi numerici](numerici.qmd)
+* [Metodi sperimentali](sperimentali.qmd)
+
+
+# Ottimizzazione
+
+... non significa solo *miglioramento*!
+
+
+## P-Diagram
+
+:::::: {.columns}
+::: {.column}
+Ogni processo può essere considerato come un oggetto, **più o meno opaco**, che opera una trasformazione:
+
+* $A, \dots, G$ sono dei *fattori in ingresso*
+* $N$ è il *rumore*
+* $Y$ è la *resa*
+:::
+
+::: {.column}
+```{dot}
+digraph p_diagram {
+  rankdir="LR"
+  node [shape="box"]
+  A
+  dots[label="..."]
+  G
+  P [label="Processo"]
+
+
+  A -> P
+  G -> P
+  dots -> P
+  N -> P
+  P -> Y
+
+  {rank = same; P; N}
+}
+```
+:::
+:::
+
+Dal punto di vista matematico, il processo è un **campo scalare** $\mathbb{R}^n \rightarrow \mathbb{R}$, del tipo $y = f(x_1, x_2, \dots, x_n) + y_N$
+
+La **resa** del processo $y$ è cioè descritta da una **superficie ($n+1$)-dimensionale** affetta da un disturbo aleatorio $y_N$
+
+
+## Ottimizzazione
+
+* **Ottimizzare** significa trovare la combinazione $x_1, x_2, \dots, x_n$ che rende ottima la resa $y$
+
+* Se la resa è una caratteristica [positiva]{.bgreen} (ad esempio *pezzi/ora*), $y$ va massimizzata
+* Se la resa è una caratteristica [negativa]{.bred} (ad esempio *rugosità*), $y$ va minimizzata
+
+Quindi **ottimizzare** ha un preciso significato matematico:
+
+* non significa semplicemente **migliorare**
+* significa trovare un punto di minimo|massimo della funzione di risposta del sistema
+* l'ottimo **può essere locale**
+* dato il contributo di $y_N$ il problema ha un certo grado di aleatorietà o **incertezza**
+
+
+## Esempio 1-D  {{< bi lightbulb >}}
+
+```{r}
+set.seed(1)
+N <- 50
+df <- tibble(
+  x = seq(0.1, 3, length.out=N),
+  yn = 5 + 10/x + 40*sqrt(x), 
+  y = yn + rnorm(N, 0, 1) #* 2/x
+) %>% 
+  mutate(min = y == min(y))
+```
+
+:::columns
+:::column
+* Se la resa del processo $y$ dipende da un unico fattore $x$, 
+ si tratta di trovare il [minimo]{.bgreen} di $f(x)$
+* Se la relazione teorica $y=f(x)$ è nota ed analitica, il problema è banale
+* Se la relazione è empirica, è necessario passare per un **modello empirico**, cioè compiere una regressione
+
+:::callout-important
+## Nota
+in realtà, anche se la relazione analitica è nota, rimangono da [identificare i parametri]{.bred}!
+:::
+:::
+
+:::column
+```{r}
+ggplot(df, aes(x=x)) + 
+  geom_line(aes(y=yn), color="darkblue", linetype=2) +
+  geom_point(aes(y=y, color=min)) +
+  geom_vline(xintercept = df$x[which.min(df$yn)], linetype=4, color="darkgreen") +
+  labs(x="Fattore X (c.u.)", y="Resa (c.u.)") + 
+  scale_color_manual(values=c("black", "red")) +
+  theme(legend.position = "none")
+```
+:::
+:::
+
+
+## Esempio 2-D  {{< bi lightbulb >}}
+
+```{r}
+set.seed(1)
+N <- 50
+df <- expand.grid(
+  x = seq(0, 10, length.out=50),
+  y = seq(0, 10, length.out=50)
+) %>% 
+  mutate(
+    zn = -3 * x + 0.2 * x^2 + -7 * y + 0.7 * y^2 + 0.3 * x * y,
+    z = zn + rnorm(length(x), 0, 0.5)
+  )
+```
+
+:::columns
+:::column
+* Se la resa del processo $y$ dipende da due fattori $x_1, x_2$, 
+ si tratta di trovare il [minimo]{.bgreen} del campo $f(x_1, x_2)$
+* Se la relazione teorica $y=f(x_1, x_2)$ è nota ed analitica, il problema è [abbastanza]{.bblue} banale
+* Se la relazione è empirica, è necessario passare per un **modello empirico**, cioè compiere una regressione di un modello bivariato
+:::
+
+:::column
+```{r}
+df %>% 
+  ggplot(aes(x=x, y=y)) + 
+  geom_contour_filled(aes(z=(z - min(z))), bins=15) + 
+  # geom_contour(aes(z=(zn - min(zn))), bins=15, color="white") +
+  geom_vline(xintercept = df$x[which.min(df$zn)], linetype=4, color="red") +
+  geom_hline(yintercept = df$y[which.min(df$zn)], linetype=4, color="red") +
+  labs(
+    x=latex2exp::TeX("Fattore $x_1$ (c.u)"),
+    y=latex2exp::TeX("Fattore $x_2$ (c.u)")
+  ) +
+  theme(legend.position="none")
+```
+:::
+:::
+
+
+## Esempio N-D {{< bi lightbulb >}} 
+
+:::columns
+:::column
+* Quando il numero di fattori diventa grande, **visualizzare** il campo che descrive la resa è impossibile
+* Si possono studiare gli effetti dei fattori [uno alla volta]{.bred}, ma così facendo si perdono le **interazioni**
+* In ogni caso, non tutti i fattori hanno un effetto significativo, quindi è opportuno [classificarli]{.bgreen} per importanza
+:::
+:::column
+```{r}
+#| warning: false
+tibble(x=1:10, y=1:10) %>% 
+  ggplot(aes(x=x, y=y)) + 
+  geom_text(aes(x = 5, y=5, label="???"), size=70, color="darkred") +
+  lims(x=c(0,10), y=c(0, 10))
+```
+:::
+:::
+
+
+## {{< bi question-circle-fill >}} E quindi?
+
+Quindi [ottimizzare un processo]{.bgreen} richiede queste competenze:
+
+* conoscenza della fisica e della tecnica del processo
+* conoscenza di tecniche di modellazione analitica (**calcolo numerico**)
+* conoscenza di tecniche di modellazione numerica (**elementi finiti**)
+* conoscenza di tecniche di **analisi statistica** (per tenere conto del [rumore]{.bred})
+* conoscenza di tecniche di **pianificazione degli esperimenti**
+
+
+# Segue...
+
+[Metodi analitici {{< bi arrow-right-square-fill >}}](analitici.qmd)

@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "presentations/analitici.html#contenuti-del-corso",
+    "href": "presentations/analitici.html#contenuti-del-corso",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Contenuti del corso",
+    "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
+  },
+  {
+    "objectID": "presentations/intro.html#contenuti-del-corso",
+    "href": "presentations/intro.html#contenuti-del-corso",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Contenuti del corso",
+    "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
+  },
+  {
+    "objectID": "presentations/intro.html#p-diagram",
+    "href": "presentations/intro.html#p-diagram",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "P-Diagram",
+    "text": "P-Diagram\n\n\nOgni processo può essere considerato come un oggetto, più o meno opaco, che opera una trasformazione:\n\n\\(A, \\dots, G\\) sono dei fattori in ingresso\n\\(N\\) è il rumore\n\\(Y\\) è la resa\n\n\n\n\n\n\n\n\n\np_diagram\n\n\n\nA\n\nA\n\n\n\nP\n\nProcesso\n\n\n\nA-&gt;P\n\n\n\n\n\ndots\n\n...\n\n\n\ndots-&gt;P\n\n\n\n\n\nG\n\nG\n\n\n\nG-&gt;P\n\n\n\n\n\nY\n\nY\n\n\n\nP-&gt;Y\n\n\n\n\n\nN\n\nN\n\n\n\nN-&gt;P\n\n\n\n\n\n\n\n\n\n\n\nDal punto di vista matematico, il processo è un campo scalare \\(\\mathbb{R}^n \\rightarrow \\mathbb{R}\\), del tipo \\(y = f(x_1, x_2, \\dots, x_n) + y_N\\)\nLa resa del processo \\(y\\) è cioè descritta da una superficie (\\(n+1\\))-dimensionale affetta da un disturbo aleatorio \\(y_N\\)"
+  },
+  {
+    "objectID": "presentations/intro.html#ottimizzazione-1",
+    "href": "presentations/intro.html#ottimizzazione-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Ottimizzazione",
+    "text": "Ottimizzazione\n\nOttimizzare significa trovare la combinazione \\(x_1, x_2, \\dots, x_n\\) che rende ottima la resa \\(y\\)\nSe la resa è una caratteristica positiva (ad esempio pezzi/ora), \\(y\\) va massimizzata\nSe la resa è una caratteristica negativa (ad esempio rugosità), \\(y\\) va minimizzata\n\nQuindi ottimizzare ha un preciso significato matematico:\n\nnon significa semplicemente migliorare\nsignifica trovare un punto di minimo|massimo della funzione di risposta del sistema\nl’ottimo può essere locale\ndato il contributo di \\(y_N\\) il problema ha un certo grado di aleatorietà o incertezza"
+  },
+  {
+    "objectID": "presentations/intro.html#esempio-1-d",
+    "href": "presentations/intro.html#esempio-1-d",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Esempio 1-D ",
+    "text": "Esempio 1-D \n\n\n\nSe la resa del processo \\(y\\) dipende da un unico fattore \\(x\\), si tratta di trovare il minimo di \\(f(x)\\)\nSe la relazione teorica \\(y=f(x)\\) è nota ed analitica, il problema è banale\nSe la relazione è empirica, è necessario passare per un modello empirico, cioè compiere una regressione\n\n\n\n\n\n\n\nNota\n\n\nin realtà, anche se la relazione analitica è nota, rimangono da identificare i parametri!"
+  },
+  {
+    "objectID": "presentations/intro.html#esempio-2-d",
+    "href": "presentations/intro.html#esempio-2-d",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Esempio 2-D ",
+    "text": "Esempio 2-D \n\n\n\nSe la resa del processo \\(y\\) dipende da due fattori \\(x_1, x_2\\), si tratta di trovare il minimo del campo \\(f(x_1, x_2)\\)\nSe la relazione teorica \\(y=f(x_1, x_2)\\) è nota ed analitica, il problema è abbastanza banale\nSe la relazione è empirica, è necessario passare per un modello empirico, cioè compiere una regressione di un modello bivariato"
+  },
+  {
+    "objectID": "presentations/intro.html#esempio-n-d",
+    "href": "presentations/intro.html#esempio-n-d",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Esempio N-D ",
+    "text": "Esempio N-D \n\n\n\nQuando il numero di fattori diventa grande, visualizzare il campo che descrive la resa è impossibile\nSi possono studiare gli effetti dei fattori uno alla volta, ma così facendo si perdono le interazioni\nIn ogni caso, non tutti i fattori hanno un effetto significativo, quindi è opportuno classificarli per importanza"
+  },
+  {
+    "objectID": "presentations/intro.html#e-quindi",
+    "href": "presentations/intro.html#e-quindi",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": " E quindi?",
+    "text": "E quindi?\nQuindi ottimizzare un processo richiede queste competenze:\n\nconoscenza della fisica e della tecnica del processo\nconoscenza di tecniche di modellazione analitica (calcolo numerico)\nconoscenza di tecniche di modellazione numerica (elementi finiti)\nconoscenza di tecniche di analisi statistica (per tenere conto del rumore)\nconoscenza di tecniche di pianificazione degli esperimenti"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Authors",
+    "section": "",
+    "text": "Authors\n\nMain author\n\nPaolo Bosetti, University or Trento\n\nContributors\n\nAnna-Carla Araujo, INSA Toulouse\nGuillaume Cohen, INSA Toulouse\n\nBeta-testers\n\nMatteo Lancini, University of Brescia\nMarco Ghidelli, University of Brescia\nNicola Abeni, University of Bresicia\nFederico Paolucci, University of Perugia\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "",
+    "text": "Questo mini-sito raccoglie il materiale di studio per il corso organizzato nell’ambito del Percorso Formativo Abilitante.\nIl materiale è organizzato in presentazioni interattive online. Le presentazioni sono navigabili da browser: premendo il tasto [?] viene visualizzato l’elenco delle scorciatoie da tastiera.\nIl sito è ricercabile: la lente di ingrandimento } in alto a destra si accede allo strumento di ricerca che consulta anche le singole presentazioni.\n\n\n\n Torna in cima"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#contenuti-del-corso",
+    "href": "presentations/sperimentali.html#contenuti-del-corso",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Contenuti del corso",
+    "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
+  },
+  {
+    "objectID": "presentations/numerici.html#contenuti-del-corso",
+    "href": "presentations/numerici.html#contenuti-del-corso",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Contenuti del corso",
+    "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
+  }
+]

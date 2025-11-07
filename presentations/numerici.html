@@ -324,6 +324,89 @@ F_3 \\ M_3 \\
 </div>
 </div></div>
 </section></section>
+<section>
+<section id="ottimizzazione-numerica" class="title-slide slide level1 center">
+<h1>Ottimizzazione numerica</h1>
+
+</section>
+<section id="nelder-mead" class="slide level2">
+<h2>Nelder-Mead</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Si definisce un <strong>simplesso</strong> un iper-poligono con N vertici su una superficie di risposta in uno spazio N-dimensionale</li>
+<li>Il simplesso viene iterativamente trasformato <strong>precipitando</strong> nel minimo locale</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/7/72/An-iteration-of-the-Nelder-Mead-method-over-two-dimensional-space-showing-point-p-min.png" style="width:80.0%"></p>
+<figcaption>Simplesso in 2-D: possibili trasformazioni</figcaption>
+</figure>
+</div>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif"></p>
+<figcaption>Simplesso Nelder-Mead nella funzione di Rosenbrock</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="traiettoria-minimi-locali" class="slide level2">
+<h2>Traiettoria — Minimi locali</h2>
+<div class="columns">
+<div class="column">
+
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-2-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="traiettoria-minimi-locali-1" class="slide level2">
+<h2>Traiettoria — Minimi locali</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>La <strong>posizione di partenza</strong> del simplesso può determinare il risultato finale, precipitando in minimi differenti</p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-5-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
 <section id="segue" class="title-slide slide level1 center">
 <h1>Segue…</h1>
 <p><a href="../presentations/sperimentali.html">Metodi sperimentali <i class="bi-arrow-right-square-fill " style="" role="img" aria-hidden="true"></i></a></p>
@@ -548,6 +631,44 @@ F_3 \\ M_3 \\
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

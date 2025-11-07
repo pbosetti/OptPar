@@ -285,5 +285,26 @@
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Esempi",
     "text": "Esempi\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nLe sole simulazioni richiedono tempi di calcolo di decine di ore\nOgni modello simulativo deve essere verificato per convergenza (dimensione mesh) e validato"
+  },
+  {
+    "objectID": "presentations/numerici.html#nelder-mead",
+    "href": "presentations/numerici.html#nelder-mead",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Nelder-Mead",
+    "text": "Nelder-Mead\n\n\n\nSi definisce un simplesso un iper-poligono con N vertici su una superficie di risposta in uno spazio N-dimensionale\nIl simplesso viene iterativamente trasformato precipitando nel minimo locale\n\n\n\n\nSimplesso in 2-D: possibili trasformazioni\n\n\n\n\n\n\nSimplesso Nelder-Mead nella funzione di Rosenbrock"
+  },
+  {
+    "objectID": "presentations/numerici.html#traiettoria-minimi-locali",
+    "href": "presentations/numerici.html#traiettoria-minimi-locali",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Traiettoria — Minimi locali",
+    "text": "Traiettoria — Minimi locali"
+  },
+  {
+    "objectID": "presentations/numerici.html#traiettoria-minimi-locali-1",
+    "href": "presentations/numerici.html#traiettoria-minimi-locali-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Traiettoria — Minimi locali",
+    "text": "Traiettoria — Minimi locali\n\n\n\n\n\n\nNota\n\n\nLa posizione di partenza del simplesso può determinare il risultato finale, precipitando in minimi differenti"
   }
 ]

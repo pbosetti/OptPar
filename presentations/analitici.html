@@ -6,7 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.13.1/bootstrap-icons.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.30">
 
   <meta name="author" content="Paolo Bosetti">
@@ -29,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-dab8fc7c1e47f8d5d6c847243235384c.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ae24b9acd77f9cc9397af828aafb10b0.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -145,14 +146,551 @@ Paolo Bosetti
 
   <p class="date">03 novembre 2025</p>
 </section>
-<section id="contenuti-del-corso" class="slide level2">
-<h2>Contenuti del corso</h2>
+<section id="contenuti" class="slide level2">
+<h2>Contenuti <i class="bi-card-list " style="" role="img" aria-hidden="true"></i></h2>
 <ul>
-<li>Ottimizzazione: cosa significa?</li>
-<li><a href="../presentations/analitici.html">Metodi analitici</a></li>
-<li><a href="../presentations/numerici.html">Metodi numerici</a></li>
-<li><a href="../presentations/sperimentali.html">Metodi sperimentali</a></li>
+<li>Richiami minimi di tecnologia meccanica</li>
+<li>Modelli di processo
+<ul>
+<li>forze e deformazioni</li>
+<li>usura degli utensili</li>
+<li>ottimizzazione della produttività</li>
+</ul></li>
+<li>Limiti dei modelli di processo analitici</li>
 </ul>
+</section>
+<section>
+<section id="richiami-minimi-di-tecnologia-meccanica" class="title-slide slide level1 center">
+<h1>Richiami minimi di tecnologia meccanica</h1>
+
+</section>
+<section id="processi-con-rimozione-di-materiale" class="slide level2">
+<h2>Processi con rimozione di materiale</h2>
+<p>Delle varie categorie di processi meccanici:</p>
+<ul>
+<li>formatura (in massa e di lamiera/tubo)</li>
+<li>sottrattivi (taglio, erosione)</li>
+<li>additivi (“stampa 3-D”)</li>
+</ul>
+<p>consideriamo i processi di <strong>taglio</strong>, perché rappresentativi, perché economicamente importanti, perché complessi da modellare</p>
+</section>
+<section id="formule-da-officina" class="slide level2">
+<h2>Formule da officina</h2>
+<ul>
+<li>Collegano i <strong>parametri di processo</strong> (velocità di rotazione e avanzamento, profondità di passata) con caratteristiche e proprietà del sistema (macchina + utensile + materiale)</li>
+<li>Ad esempio, per la tornitura:
+<ul>
+<li>Velocità di rotazione <span class="math inline">\(N=\frac{V}{\pi D_0}\)</span></li>
+<li>Velocità di avanzamento <span class="math inline">\(f=Nf_r = \frac{Vf_r}{\pi D_0}\)</span></li>
+<li><em>Material Removal Rate</em> <span class="math inline">\(\mathit{MRR}=Vfd = \frac{Vf_rfd}{\pi D_0}\)</span></li>
+</ul></li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Il tasso di asportazione di materiale, MRR</strong></p>
+</div>
+<div class="callout-content">
+<p>È il parametro più importante, perché stabilisce la <strong>fattibilità</strong> di una lavorazione su una certa macchina, dato che l’<strong>energia specifica</strong> <span class="math inline">\(\varepsilon=\frac{P}{\mathit{MRR}}\)</span> è — in prima approssimazione — una proprietà del materiale tagliato</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="modelli-di-processo" class="title-slide slide level1 center">
+<h1>Modelli di processo</h1>
+
+</section>
+<section id="taglio-ortogonale" class="slide level2">
+<h2>Taglio ortogonale</h2>
+<ul>
+<li>I processi di taglio avvengono con rimozione progressiva di materiale mediante <strong>formazione di truciolo</strong> da parte di un <strong>utensile tagliente</strong></li>
+<li>Il processo di formazione del truciolo impatta sull’intera produzione:
+<ul>
+<li>qualità</li>
+<li>consumo</li>
+<li>costi</li>
+<li>tempi</li>
+</ul></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Nonostante si studino i processi di taglio dalla fine del 1800, ci si è presto resi conto che il fenomeno è così complesso che è necessario limitarsi a condizioni <strong>semplificate</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="taglio-ortogonale-definizione" class="slide level2">
+<h2>Taglio ortogonale — definizione</h2>
+<div class="columns">
+<div class="column">
+<p>La formazione di truciolo è un processo inerentemente tridimensionale</p>
+<ul>
+<li>per la geometria del processo</li>
+<li>per lo stato di sforzo e deformazione</li>
+</ul>
+<p>La più importante semplificazione è considerare:</p>
+<ul>
+<li>un processo <strong>piano</strong> (<em>quasi</em> 2-D)</li>
+<li>stato di <strong>deformazione piana</strong></li>
+<li>utensile con tagliente vivo</li>
+</ul>
+</div><div class="column">
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/jvnbyrhg/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+</iframe>
+</div></div>
+</section>
+<section id="taglio-ortogonale-definizione-1" class="slide level2">
+<h2>Taglio ortogonale — definizione</h2>
+<div class="columns">
+<div class="column">
+<p>I <strong>parametri</strong> del modello semplificato sono:</p>
+<ul>
+<li>angolo di spoglia <span class="math inline">\(\alpha\)</span></li>
+<li>angolo del fianco <span class="math inline">\(\beta\)</span></li>
+<li>profondità di passata <span class="math inline">\(d\)</span>, o spessore del truciolo non tagliato <span class="math inline">\(t_0\)</span></li>
+<li>la velocità di taglio <span class="math inline">\(V\)</span></li>
+</ul>
+</div><div class="column">
+<p>In <strong>uscita</strong> abbiamo:</p>
+<ul>
+<li>lo spessore del truciolo <span class="math inline">\(t\)</span></li>
+<li>angolo del piano di scorrimento <span class="math inline">\(\varphi\)</span></li>
+<li>la forza di taglio <span class="math inline">\(\mathbf{F}\)</span> (modulo e direzione)</li>
+</ul>
+</div></div>
+</section>
+<section id="angoli" class="slide level2">
+<h2>Angoli</h2>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[\begin{align}
+R &amp;= t_0/t_c \\
+r &amp;= \frac{l_s\sin\varphi}{l_s\cos(\varphi-\alpha)} \\
+&amp;= \frac{\sin\varphi}{\cos(\varphi-\alpha)} \\
+\tan\varphi &amp;= \frac{r \cos\alpha}{1 - r \sin\alpha}
+\end{align}\]</span></p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/ortogonale.png"></p>
+<figcaption>Taglio ortogonale</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Cioè:</strong></p>
+</div>
+<div class="callout-content">
+<p>dalla misura dello spessore del truciolo si può risalire alla misura dell’angolo del piano di taglio <span class="math inline">\(\varphi\)</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="forze-e-deformazioni" class="slide level2">
+<h2>Forze e deformazioni</h2>
+<div style="text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/cards.png"></p>
+<figcaption>Modello a mazzo di carte. Lo spessore dello strato <span class="math inline">\(a\)</span> è dell’ordine della dimensione della grana cristallina</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="forze-e-deformazioni-1" class="slide level2">
+<h2>Forze e deformazioni</h2>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[\begin{align}
+\gamma &amp;= \frac{AB}{CO} = \frac{AO + OB}{CO} \\
+&amp;= \frac{AO}{CO} + \frac{OB}{CO}\\
+\gamma &amp;= \cot(\varphi) + \tan(\varphi - \alpha)
+\end{align}\]</span></p>
+</div><div class="column" style="text-align: center;">
+<p><img data-src="../images/cards_detail.png"></p>
+</div></div>
+<p>In altre parole: dagli angoli di spoglia e del piano di taglio è possibile calcolare la <strong>deformazione di taglio</strong></p>
+</section>
+<section id="forze-e-deformazioni-2" class="slide level2">
+<h2>Forze e deformazioni</h2>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[\begin{align}
+Vt_0 &amp;= V_ct_c \\
+V_c &amp;= V r = V\frac{\sin\varphi}{\cos(\varphi - \alpha)} \\
+\frac{V_c}{\sin\varphi} &amp;= \frac{V_s}{\sin(\pi/2 - \alpha)}
+\end{align}\]</span></p>
+</div><div class="column" style="text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/cards_detail.png"></p>
+<figcaption>Triangolo delle velocità: <span class="math inline">\(AB = V\)</span>, <span class="math inline">\(BC = V_c\)</span>, <span class="math inline">\(AC = V_s\)</span></figcaption>
+</figure>
+</div>
+</div></div>
+<p><span class="math display">\[
+\dot\gamma = \frac{V_s}{a} = \frac{V\cos\alpha}{a\cos(\varphi-\alpha)}
+\]</span></p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Siccome <span class="math inline">\(a~10\sim\mu\mathrm{m}\)</span> e <span class="math inline">\(V\)</span> può essere molto alto, risulta che la velocità di deformazione può essere <strong>estremamente elevata</strong>, cioè difficile da riprodurre in condizioni controllate</p>
+</div>
+</div>
+</div>
+</section>
+<section id="forze-e-deformazioni-3" class="slide level2">
+<h2>Forze e deformazioni</h2>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[
+\left\{
+\begin{array}{lcl}
+F_s &amp;=&amp; R \cos(\varphi+\beta-\alpha)\\
+F_n &amp;=&amp; R\sin(\varphi+\beta-\alpha)
+\end{array}
+\right.
+\]</span></p>
+<p><span class="math display">\[
+\left\{
+\begin{array}{lcl}
+F_s &amp;=&amp; F_c\cos \varphi - F_t\sin\varphi\\
+F_n &amp;=&amp; F_c\sin \varphi + F_t\cos\varphi
+\end{array}
+\right.
+\]</span> <span class="math display">\[
+\left\{
+\begin{array}{lcl}
+F &amp;=&amp; F_c\sin \alpha + F_t\cos\alpha\\
+N &amp;=&amp; F_c\cos \alpha - F_t\sin\alpha
+\end{array}
+\right.
+\]</span> <span class="math display">\[
+\mu = \tan\beta = F/N = -\frac{F_t + F_c\tan\alpha}{F_c - F_t\tan\alpha}
+\]</span></p>
+<p><span class="math display">\[
+F_t = F_c\tan(\beta-\alpha)
+\]</span></p>
+</div><div class="column">
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/twsxsapp/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+</iframe>
+</div></div>
+</section>
+<section id="modello-di-merchant" class="slide level2">
+<h2>Modello di Merchant</h2>
+<div class="columns">
+<div class="column">
+<p>Il piano di scorrimento è quello che <strong>minimizza</strong> lo sforzo di taglio <span class="math inline">\(\tau\)</span>: <span class="math display">\[
+\tau=\frac{F_s}{A_s}=R\cos(\varphi+\beta-\alpha)\frac{\sin \varphi}{t_0w}
+\]</span> <span class="math display">\[
+\frac{d}{d\phi}\cos(\phi+\beta-\alpha)\sin\phi = 0
+\]</span> Risulta:</p>
+<p><span class="math display">\[
+\varphi = \pi/4+\frac{\alpha-\beta}{2}
+\]</span></p>
+</div><div class="column">
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/vhkbkcxf/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+</iframe>
+</div></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Per ora nulla ci consente di stimare la magnitudine di <span class="math inline">\(R\)</span> e la sua relazione con <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span>!</p>
+</div>
+</div>
+</div>
+</section>
+<section id="energia-specifica" class="slide level2">
+<h2>Energia specifica</h2>
+<p>Già nei primi del ’900 si è osservato che la potenza necessaria a sostenere un’operazione di taglio è proporzionale soprattutto al tasso di asportazione di materiale:</p>
+<p><span class="math display">\[
+P = \varepsilon\mathrm{MRR}
+\]</span> Il termine <span class="math inline">\(\varepsilon\)</span> è chiamato <strong>energia specifica</strong>, ed è in primo luogo una funzione del materiale lavorato</p>
+<div class="columns">
+<div class="column">
+<p>In misura minore, dipende anche:</p>
+<ul>
+<li>dalla geometria dell’utensile</li>
+<li>dall’affilatura dell’utensile</li>
+<li>dall’angolo di attrito <span class="math inline">\(\beta\)</span></li>
+</ul>
+</div><div class="column">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Si tratta sempre di relazioni <strong>empiriche</strong>, non supportate da modelli basati sulle proprietà del materiale. Anche quando il modello del materiale può essere utilizzato, la calibrazione dei parametri è <strong>estremamente complessa</strong> (vedi ad es. <span class="math inline">\(\dot\gamma\)</span>)</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="usura-degli-utensili" class="slide level2">
+<h2>Usura degli utensili</h2>
+<p>Gli utensili sono soggetti a <strong>usura</strong>. Può colpire due parti dell’utensile:</p>
+<ul>
+<li>il <span class="bred">fianco dell’utensile</span>: modifica la geometria dell’utensile a contatto con il pezzo, quindi ha effetto progressivo sulla qualità superficiale e sulla precisione dimensionale</li>
+<li>il <span class="bblue">petto dell’utensile</span>: modifica la geometria in contatto con il truciolo: non ha effetto sul pezzo, ma a lungo andare indebolisce l’utensile causandone rottura</li>
+</ul>
+<p>Se l’utensile e i parametri di taglio sono scelti correttamente, interviene prima l’usura del fianco che quella del petto</p>
+<p>La legge di usura è stata formulata da Taylor: <span class="math inline">\(VT^n=K\)</span></p>
+<div class="smaller">
+<ul>
+<li><span class="math inline">\(V\)</span> è la velocità di taglio</li>
+<li><span class="math inline">\(T\)</span> è la vita dell’utensile</li>
+<li><span class="math inline">\(n\)</span> e <span class="math inline">\(K\)</span> sono costanti dei materiali; <span class="math inline">\(K\)</span> dipende anche dal criterio di fine vita</li>
+</ul>
+</div>
+</section>
+<section id="legge-di-taylor" class="slide level2">
+<h2>Legge di Taylor</h2>
+<p><span class="math inline">\(VT^n=K \rightarrow \log(V) - n\log(T) = \log(K) \rightarrow \log(T) = \frac{1}{n}\log(V) - \frac{1}{n}\log(K)\)</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="analitici_files/figure-revealjs/unnamed-chunk-1-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="analitici_files/figure-revealjs/unnamed-chunk-2-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ottimizzazione-della-produttività" class="slide level2">
+<h2>Ottimizzazione della produttività</h2>
+<p>I costi di una produzione per lavorazioni meccaniche sono legati a:</p>
+<ul>
+<li>investimenti e <em>overhead</em> (<span class="rbold">fissi</span>)</li>
+<li>lavoro e materie prime (<span class="rgreen">variabili</span>)</li>
+<li>costo per pezzo (<span class="rgreen">variabili</span>)</li>
+</ul>
+<p>I costi sono variabili dipendenti. I parametri di processo sono <strong>parametri indipendenti</strong></p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Possiamo chiederci se ci siano condizioni di processo che <span class="bgreen">massimizzano</span> la produttività e/o <span class="bred">minimizzano</span> i costi</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ottimizzazione-della-produttività-tornitura" class="slide level2">
+<h2>Ottimizzazione della produttività — Tornitura</h2>
+<div class="columns">
+<div class="column smaller" style="width:30%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Simbolo</th>
+<th>Significato</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(C_p\)</span></td>
+<td>Costo per pezzo</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_m\)</span></td>
+<td>Costo lavorazione</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_s\)</span></td>
+<td>Costo setup</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_l\)</span></td>
+<td>Costo caricamento</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_t\)</span></td>
+<td>Costo utensile</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(L\)</span></td>
+<td>Costo del lavoro</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(O\)</span></td>
+<td>Overhead</td>
+</tr>
+</tbody>
+</table>
+<p>In <strong>tornitura</strong>: <span class="math display">\[
+T_m = \frac{L}{fN}=\frac{\pi LD}{fV} \\
+N_p = \frac{T}{T_m} = \frac{fK^{1/n}}{\pi LDV^{1/n-1}}
+\]</span></p>
+</div><div class="column" style="width:70%;">
+<p><span class="math display">\[\begin{align}
+C_p &amp;= C_m + C_s + C_l + C_t \\
+C_m &amp;= T_m(L_m + O_m) \\
+C_l &amp;= T_l(L_m + O_m) \\
+C_t &amp;= \frac{1}{N_p}\left[T_c(L_m+O_m) + T_g(L_g+O_g) + D_c\right] = \frac{C_{t0}}{N_p} \\
+T_p &amp;= T_{s,l} + T_m + \frac{C_{t0}}{N_p}
+\end{align}\]</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Risulta <span class="math inline">\(C_p=C_p(V)\)</span> e <span class="math inline">\(T_p = T_p(V)\)</span>, quindi possiamo derivare entrambe per identificare una conduzione di ottimo</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ottimizzazione-della-produttività-tornitura-1" class="slide level2">
+<h2>Ottimizzazione della produttività — Tornitura</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Costi</strong>: <span class="math display">\[\begin{align}
+\frac{\partial C_p}{\partial V} &amp;= 0 \\
+V_{o,c} &amp;= \frac{K(L_m+O_m)^n}{[(1/n-1)C_{t0}]^n} \\
+T_{o,c} &amp;= (1/n -1)\frac{C_{t0}}{L_m+O_m}
+\end{align}\]</span></p>
+</div><div class="column">
+<p><strong>Tempi</strong>: <span class="math display">\[\begin{align}
+\frac{\partial T_p}{\partial V} &amp;= 0 \\
+V_{o,t} &amp;= \frac{K}{[(1/n-1)T_c]^n} \\
+T_{0,t} &amp;= (1/n -1)T_c
+\end{align}\]</span></p>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Cosa ottimizziamo? costi o tempi?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ottimizzazione-della-produttività-tornitura-2" class="slide level2">
+<h2>Ottimizzazione della produttività — Tornitura</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>La velocità di taglio ottima <span class="math inline">\(V_{o,c}\)</span> corrisponde alla massima efficienza economica</li>
+<li>Tuttavia, nel caso di <strong>penali sul ritardo</strong> può valere la pena produrre in corrispondenza di <span class="math inline">\(V_{o,t}\)</span>, perché è quella che <strong>massimizza la produttività</strong></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="analitici_files/figure-revealjs/unnamed-chunk-3-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="limiti-dei-modelli-di-processo-analitici" class="title-slide slide level1 center">
+<h1>Limiti dei modelli di processo analitici</h1>
+
+</section>
+<section id="taglio-ortogonale-1" class="slide level2">
+<h2>Taglio ortogonale</h2>
+<ul>
+<li>Il taglio ortogonale <strong>raramente si applica</strong>. Nella maggior parte delle lavorazioni reali la formazione del truciolo è inerentemente 3-D</li>
+<li>Il modello di formazione del truciolo è ideale. Nella realtà:
+<ul>
+<li>il tagliente non è mai perfettamente acuto</li>
+<li>il piano di scorrimento non ha uno spessore nullo</li>
+<li>la deformazione non avviene solo sul piano di scorrimento, ma anche sulla superficie lavorata in contatto con il tagliente e tra truciolo e utensile</li>
+</ul></li>
+<li>Il campo di sforzi e deformazioni non può essere calcolato in via analitica</li>
+<li>Non esiste un <strong>modello termico</strong> affidabile che consideri attrito e deformazione plastica come fonti di calore</li>
+<li>Le velocità di deformazione in gioco <span class="math inline">\(\dot\gamma\)</span> sono estreme: ciò rende molto difficile identificare le proprietà plastiche del materiale in condizioni analoghe</li>
+</ul>
+</section>
+<section id="legge-di-taylor-1" class="slide level2">
+<h2>Legge di Taylor</h2>
+<ul>
+<li>È un <strong>modello empirico</strong>, cioè non ha basi fisiche ma è basato sulla sola osservazione, quindi non può essere calibrato sulla base di misure di proprietà dei materiali</li>
+<li>È una legge approssimata: in realtà esistono leggi empiriche più complete in forma <span class="math inline">\(VT^nd^xf^y=K\)</span> che considerano altri parametri di processo, che hanno un’influenza molto minore di <span class="math inline">\(V\)</span> ma che comunque influenzano la vita</li>
+<li>È <strong>costoso</strong> da calibrare:
+<ul>
+<li>la procedura sperimentale è necessariamente lenta e costosa</li>
+<li><span class="math inline">\(n\)</span> dipende dal materiale del pezzo e da quello dell’utensile</li>
+<li><span class="math inline">\(K\)</span> dipende dal <strong>criterio di fine vita</strong>, quindi è specifico dell’utilizzatore (cioè: non si trova tabulato)</li>
+</ul></li>
+<li>Anche le leggi più complete non considerano fattori come <strong>la lubrorefrigerazione</strong></li>
+</ul>
+</section>
+<section id="ottimizzazione-economica" class="slide level2">
+<h2>Ottimizzazione economica</h2>
+<ul>
+<li>L’analisi fatta dipende dalla possibilità di <strong>esprimere analiticamente</strong> <span class="math inline">\(T_m(V)\)</span>
+<ul>
+<li>Ciò è possibile <strong>solo per lavorazioni elementari</strong> (es. la tornitura cilindrica). In caso di lavorazioni più complesse tale relazione può solo essere calcolata per punti mediante simulazione del processo (via funzionalità CAM o CNC, che comporta <strong>tempi e costi notevoli</strong>)</li>
+<li>Si basa sulla disponibilità di una legge di usura validata e affidabile</li>
+<li>È conveniente solo per grandi e grandissimi lotti (fattore di scala)</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="segue" class="title-slide slide level1 center">
+<h1>Segue…</h1>
+<p><a href="../presentations/numerici.html">Metodi numerici <i class="bi-arrow-right-square-fill " style="" role="img" aria-hidden="true"></i></a></p>
 
 
 </section>
@@ -374,6 +912,44 @@ Paolo Bosetti
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

@@ -1,10 +1,157 @@
 [
   {
-    "objectID": "presentations/analitici.html#contenuti-del-corso",
-    "href": "presentations/analitici.html#contenuti-del-corso",
+    "objectID": "presentations/analitici.html#contenuti",
+    "href": "presentations/analitici.html#contenuti",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
-    "section": "Contenuti del corso",
-    "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
+    "section": "Contenuti ",
+    "text": "Contenuti \n\nRichiami minimi di tecnologia meccanica\nModelli di processo\n\nforze e deformazioni\nusura degli utensili\nottimizzazione della produttività\n\nLimiti dei modelli di processo analitici"
+  },
+  {
+    "objectID": "presentations/analitici.html#processi-con-rimozione-di-materiale",
+    "href": "presentations/analitici.html#processi-con-rimozione-di-materiale",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Processi con rimozione di materiale",
+    "text": "Processi con rimozione di materiale\nDelle varie categorie di processi meccanici:\n\nformatura (in massa e di lamiera/tubo)\nsottrattivi (taglio, erosione)\nadditivi (“stampa 3-D”)\n\nconsideriamo i processi di taglio, perché rappresentativi, perché economicamente importanti, perché complessi da modellare"
+  },
+  {
+    "objectID": "presentations/analitici.html#formule-da-officina",
+    "href": "presentations/analitici.html#formule-da-officina",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Formule da officina",
+    "text": "Formule da officina\n\nCollegano i parametri di processo (velocità di rotazione e avanzamento, profondità di passata) con caratteristiche e proprietà del sistema (macchina + utensile + materiale)\nAd esempio, per la tornitura:\n\nVelocità di rotazione \\(N=\\frac{V}{\\pi D_0}\\)\nVelocità di avanzamento \\(f=Nf_r = \\frac{Vf_r}{\\pi D_0}\\)\nMaterial Removal Rate \\(\\mathit{MRR}=Vfd = \\frac{Vf_rfd}{\\pi D_0}\\)\n\n\n\n\n\n\n\n\nIl tasso di asportazione di materiale, MRR\n\n\nÈ il parametro più importante, perché stabilisce la fattibilità di una lavorazione su una certa macchina, dato che l’energia specifica \\(\\varepsilon=\\frac{P}{\\mathit{MRR}}\\) è — in prima approssimazione — una proprietà del materiale tagliato"
+  },
+  {
+    "objectID": "presentations/analitici.html#taglio-ortogonale",
+    "href": "presentations/analitici.html#taglio-ortogonale",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Taglio ortogonale",
+    "text": "Taglio ortogonale\n\nI processi di taglio avvengono con rimozione progressiva di materiale mediante formazione di truciolo da parte di un utensile tagliente\nIl processo di formazione del truciolo impatta sull’intera produzione:\n\nqualità\nconsumo\ncosti\ntempi\n\n\n\n\n\n\n\n\nNota\n\n\nNonostante si studino i processi di taglio dalla fine del 1800, ci si è presto resi conto che il fenomeno è così complesso che è necessario limitarsi a condizioni semplificate"
+  },
+  {
+    "objectID": "presentations/analitici.html#taglio-ortogonale-definizione",
+    "href": "presentations/analitici.html#taglio-ortogonale-definizione",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Taglio ortogonale — definizione",
+    "text": "Taglio ortogonale — definizione\n\n\nLa formazione di truciolo è un processo inerentemente tridimensionale\n\nper la geometria del processo\nper lo stato di sforzo e deformazione\n\nLa più importante semplificazione è considerare:\n\nun processo piano (quasi 2-D)\nstato di deformazione piana\nutensile con tagliente vivo"
+  },
+  {
+    "objectID": "presentations/analitici.html#taglio-ortogonale-definizione-1",
+    "href": "presentations/analitici.html#taglio-ortogonale-definizione-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Taglio ortogonale — definizione",
+    "text": "Taglio ortogonale — definizione\n\n\nI parametri del modello semplificato sono:\n\nangolo di spoglia \\(\\alpha\\)\nangolo del fianco \\(\\beta\\)\nprofondità di passata \\(d\\), o spessore del truciolo non tagliato \\(t_0\\)\nla velocità di taglio \\(V\\)\n\n\nIn uscita abbiamo:\n\nlo spessore del truciolo \\(t\\)\nangolo del piano di scorrimento \\(\\varphi\\)\nla forza di taglio \\(\\mathbf{F}\\) (modulo e direzione)"
+  },
+  {
+    "objectID": "presentations/analitici.html#angoli",
+    "href": "presentations/analitici.html#angoli",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Angoli",
+    "text": "Angoli\n\n\n\\[\\begin{align}\nR &= t_0/t_c \\\\\nr &= \\frac{l_s\\sin\\varphi}{l_s\\cos(\\varphi-\\alpha)} \\\\\n&= \\frac{\\sin\\varphi}{\\cos(\\varphi-\\alpha)} \\\\\n\\tan\\varphi &= \\frac{r \\cos\\alpha}{1 - r \\sin\\alpha}\n\\end{align}\\]\n\n\n\n\nTaglio ortogonale\n\n\n\n\n\n\n\n\n\nCioè:\n\n\ndalla misura dello spessore del truciolo si può risalire alla misura dell’angolo del piano di taglio \\(\\varphi\\)"
+  },
+  {
+    "objectID": "presentations/analitici.html#forze-e-deformazioni",
+    "href": "presentations/analitici.html#forze-e-deformazioni",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Forze e deformazioni",
+    "text": "Forze e deformazioni\n\n\n\n\nModello a mazzo di carte. Lo spessore dello strato \\(a\\) è dell’ordine della dimensione della grana cristallina"
+  },
+  {
+    "objectID": "presentations/analitici.html#forze-e-deformazioni-1",
+    "href": "presentations/analitici.html#forze-e-deformazioni-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Forze e deformazioni",
+    "text": "Forze e deformazioni\n\n\n\\[\\begin{align}\n\\gamma &= \\frac{AB}{CO} = \\frac{AO + OB}{CO} \\\\\n&= \\frac{AO}{CO} + \\frac{OB}{CO}\\\\\n\\gamma &= \\cot(\\varphi) + \\tan(\\varphi - \\alpha)\n\\end{align}\\]\n\n\n\nIn altre parole: dagli angoli di spoglia e del piano di taglio è possibile calcolare la deformazione di taglio"
+  },
+  {
+    "objectID": "presentations/analitici.html#forze-e-deformazioni-2",
+    "href": "presentations/analitici.html#forze-e-deformazioni-2",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Forze e deformazioni",
+    "text": "Forze e deformazioni\n\n\n\\[\\begin{align}\nVt_0 &= V_ct_c \\\\\nV_c &= V r = V\\frac{\\sin\\varphi}{\\cos(\\varphi - \\alpha)} \\\\\n\\frac{V_c}{\\sin\\varphi} &= \\frac{V_s}{\\sin(\\pi/2 - \\alpha)}\n\\end{align}\\]\n\n\n\n\nTriangolo delle velocità: \\(AB = V\\), \\(BC = V_c\\), \\(AC = V_s\\)\n\n\n\n\\[\n\\dot\\gamma = \\frac{V_s}{a} = \\frac{V\\cos\\alpha}{a\\cos(\\varphi-\\alpha)}\n\\]\n\n\n\n\n\n\nImportante\n\n\nSiccome \\(a~10\\sim\\mu\\mathrm{m}\\) e \\(V\\) può essere molto alto, risulta che la velocità di deformazione può essere estremamente elevata, cioè difficile da riprodurre in condizioni controllate"
+  },
+  {
+    "objectID": "presentations/analitici.html#forze-e-deformazioni-3",
+    "href": "presentations/analitici.html#forze-e-deformazioni-3",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Forze e deformazioni",
+    "text": "Forze e deformazioni\n\n\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& R \\cos(\\varphi+\\beta-\\alpha)\\\\\nF_n &=& R\\sin(\\varphi+\\beta-\\alpha)\n\\end{array}\n\\right.\n\\]\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& F_c\\cos \\varphi - F_t\\sin\\varphi\\\\\nF_n &=& F_c\\sin \\varphi + F_t\\cos\\varphi\n\\end{array}\n\\right.\n\\] \\[\n\\left\\{\n\\begin{array}{lcl}\nF &=& F_c\\sin \\alpha + F_t\\cos\\alpha\\\\\nN &=& F_c\\cos \\alpha - F_t\\sin\\alpha\n\\end{array}\n\\right.\n\\] \\[\n\\mu = \\tan\\beta = F/N = -\\frac{F_t + F_c\\tan\\alpha}{F_c - F_t\\tan\\alpha}\n\\]\n\\[\nF_t = F_c\\tan(\\beta-\\alpha)\n\\]"
+  },
+  {
+    "objectID": "presentations/analitici.html#modello-di-merchant",
+    "href": "presentations/analitici.html#modello-di-merchant",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Modello di Merchant",
+    "text": "Modello di Merchant\n\n\nIl piano di scorrimento è quello che minimizza lo sforzo di taglio \\(\\tau\\): \\[\n\\tau=\\frac{F_s}{A_s}=R\\cos(\\varphi+\\beta-\\alpha)\\frac{\\sin \\varphi}{t_0w}\n\\] \\[\n\\frac{d}{d\\phi}\\cos(\\phi+\\beta-\\alpha)\\sin\\phi = 0\n\\] Risulta:\n\\[\n\\varphi = \\pi/4+\\frac{\\alpha-\\beta}{2}\n\\]\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\nPer ora nulla ci consente di stimare la magnitudine di \\(R\\) e la sua relazione con \\(\\alpha\\) e \\(\\beta\\)!"
+  },
+  {
+    "objectID": "presentations/analitici.html#energia-specifica",
+    "href": "presentations/analitici.html#energia-specifica",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Energia specifica",
+    "text": "Energia specifica\nGià nei primi del ’900 si è osservato che la potenza necessaria a sostenere un’operazione di taglio è proporzionale soprattutto al tasso di asportazione di materiale:\n\\[\nP = \\varepsilon\\mathrm{MRR}\n\\] Il termine \\(\\varepsilon\\) è chiamato energia specifica, ed è in primo luogo una funzione del materiale lavorato\n\n\nIn misura minore, dipende anche:\n\ndalla geometria dell’utensile\ndall’affilatura dell’utensile\ndall’angolo di attrito \\(\\beta\\)\n\n\n\n\n\n\n\n\nImportante\n\n\nSi tratta sempre di relazioni empiriche, non supportate da modelli basati sulle proprietà del materiale. Anche quando il modello del materiale può essere utilizzato, la calibrazione dei parametri è estremamente complessa (vedi ad es. \\(\\dot\\gamma\\))"
+  },
+  {
+    "objectID": "presentations/analitici.html#usura-degli-utensili",
+    "href": "presentations/analitici.html#usura-degli-utensili",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Usura degli utensili",
+    "text": "Usura degli utensili\nGli utensili sono soggetti a usura. Può colpire due parti dell’utensile:\n\nil fianco dell’utensile: modifica la geometria dell’utensile a contatto con il pezzo, quindi ha effetto progressivo sulla qualità superficiale e sulla precisione dimensionale\nil petto dell’utensile: modifica la geometria in contatto con il truciolo: non ha effetto sul pezzo, ma a lungo andare indebolisce l’utensile causandone rottura\n\nSe l’utensile e i parametri di taglio sono scelti correttamente, interviene prima l’usura del fianco che quella del petto\nLa legge di usura è stata formulata da Taylor: \\(VT^n=K\\)\n\n\n\\(V\\) è la velocità di taglio\n\\(T\\) è la vita dell’utensile\n\\(n\\) e \\(K\\) sono costanti dei materiali; \\(K\\) dipende anche dal criterio di fine vita"
+  },
+  {
+    "objectID": "presentations/analitici.html#legge-di-taylor",
+    "href": "presentations/analitici.html#legge-di-taylor",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Legge di Taylor",
+    "text": "Legge di Taylor\n\\(VT^n=K \\rightarrow \\log(V) - n\\log(T) = \\log(K) \\rightarrow \\log(T) = \\frac{1}{n}\\log(V) - \\frac{1}{n}\\log(K)\\)"
+  },
+  {
+    "objectID": "presentations/analitici.html#ottimizzazione-della-produttività",
+    "href": "presentations/analitici.html#ottimizzazione-della-produttività",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Ottimizzazione della produttività",
+    "text": "Ottimizzazione della produttività\nI costi di una produzione per lavorazioni meccaniche sono legati a:\n\ninvestimenti e overhead (fissi)\nlavoro e materie prime (variabili)\ncosto per pezzo (variabili)\n\nI costi sono variabili dipendenti. I parametri di processo sono parametri indipendenti\n\n\n\n\n\n\nImportante\n\n\nPossiamo chiederci se ci siano condizioni di processo che massimizzano la produttività e/o minimizzano i costi"
+  },
+  {
+    "objectID": "presentations/analitici.html#ottimizzazione-della-produttività-tornitura",
+    "href": "presentations/analitici.html#ottimizzazione-della-produttività-tornitura",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Ottimizzazione della produttività — Tornitura",
+    "text": "Ottimizzazione della produttività — Tornitura\n\n\n\n\n\nSimbolo\nSignificato\n\n\n\n\n\\(C_p\\)\nCosto per pezzo\n\n\n\\(C_m\\)\nCosto lavorazione\n\n\n\\(C_s\\)\nCosto setup\n\n\n\\(C_l\\)\nCosto caricamento\n\n\n\\(C_t\\)\nCosto utensile\n\n\n\\(L\\)\nCosto del lavoro\n\n\n\\(O\\)\nOverhead\n\n\n\nIn tornitura: \\[\nT_m = \\frac{L}{fN}=\\frac{\\pi LD}{fV} \\\\\nN_p = \\frac{T}{T_m} = \\frac{fK^{1/n}}{\\pi LDV^{1/n-1}}\n\\]\n\n\\[\\begin{align}\nC_p &= C_m + C_s + C_l + C_t \\\\\nC_m &= T_m(L_m + O_m) \\\\\nC_l &= T_l(L_m + O_m) \\\\\nC_t &= \\frac{1}{N_p}\\left[T_c(L_m+O_m) + T_g(L_g+O_g) + D_c\\right] = \\frac{C_{t0}}{N_p} \\\\\nT_p &= T_{s,l} + T_m + \\frac{C_{t0}}{N_p}\n\\end{align}\\]\n\n\n\n\n\n\nNota\n\n\nRisulta \\(C_p=C_p(V)\\) e \\(T_p = T_p(V)\\), quindi possiamo derivare entrambe per identificare una conduzione di ottimo"
+  },
+  {
+    "objectID": "presentations/analitici.html#ottimizzazione-della-produttività-tornitura-1",
+    "href": "presentations/analitici.html#ottimizzazione-della-produttività-tornitura-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Ottimizzazione della produttività — Tornitura",
+    "text": "Ottimizzazione della produttività — Tornitura\n\n\nCosti: \\[\\begin{align}\n\\frac{\\partial C_p}{\\partial V} &= 0 \\\\\nV_{o,c} &= \\frac{K(L_m+O_m)^n}{[(1/n-1)C_{t0}]^n} \\\\\nT_{o,c} &= (1/n -1)\\frac{C_{t0}}{L_m+O_m}\n\\end{align}\\]\n\nTempi: \\[\\begin{align}\n\\frac{\\partial T_p}{\\partial V} &= 0 \\\\\nV_{o,t} &= \\frac{K}{[(1/n-1)T_c]^n} \\\\\nT_{0,t} &= (1/n -1)T_c\n\\end{align}\\]\n\n\n\n\n\n\n\nNota\n\n\nCosa ottimizziamo? costi o tempi?"
+  },
+  {
+    "objectID": "presentations/analitici.html#ottimizzazione-della-produttività-tornitura-2",
+    "href": "presentations/analitici.html#ottimizzazione-della-produttività-tornitura-2",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Ottimizzazione della produttività — Tornitura",
+    "text": "Ottimizzazione della produttività — Tornitura\n\n\n\nLa velocità di taglio ottima \\(V_{o,c}\\) corrisponde alla massima efficienza economica\nTuttavia, nel caso di penali sul ritardo può valere la pena produrre in corrispondenza di \\(V_{o,t}\\), perché è quella che massimizza la produttività"
+  },
+  {
+    "objectID": "presentations/analitici.html#taglio-ortogonale-1",
+    "href": "presentations/analitici.html#taglio-ortogonale-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Taglio ortogonale",
+    "text": "Taglio ortogonale\n\nIl taglio ortogonale raramente si applica. Nella maggior parte delle lavorazioni reali la formazione del truciolo è inerentemente 3-D\nIl modello di formazione del truciolo è ideale. Nella realtà:\n\nil tagliente non è mai perfettamente acuto\nil piano di scorrimento non ha uno spessore nullo\nla deformazione non avviene solo sul piano di scorrimento, ma anche sulla superficie lavorata in contatto con il tagliente e tra truciolo e utensile\n\nIl campo di sforzi e deformazioni non può essere calcolato in via analitica\nNon esiste un modello termico affidabile che consideri attrito e deformazione plastica come fonti di calore\nLe velocità di deformazione in gioco \\(\\dot\\gamma\\) sono estreme: ciò rende molto difficile identificare le proprietà plastiche del materiale in condizioni analoghe"
+  },
+  {
+    "objectID": "presentations/analitici.html#legge-di-taylor-1",
+    "href": "presentations/analitici.html#legge-di-taylor-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Legge di Taylor",
+    "text": "Legge di Taylor\n\nÈ un modello empirico, cioè non ha basi fisiche ma è basato sulla sola osservazione, quindi non può essere calibrato sulla base di misure di proprietà dei materiali\nÈ una legge approssimata: in realtà esistono leggi empiriche più complete in forma \\(VT^nd^xf^y=K\\) che considerano altri parametri di processo, che hanno un’influenza molto minore di \\(V\\) ma che comunque influenzano la vita\nÈ costoso da calibrare:\n\nla procedura sperimentale è necessariamente lenta e costosa\n\\(n\\) dipende dal materiale del pezzo e da quello dell’utensile\n\\(K\\) dipende dal criterio di fine vita, quindi è specifico dell’utilizzatore (cioè: non si trova tabulato)\n\nAnche le leggi più complete non considerano fattori come la lubrorefrigerazione"
+  },
+  {
+    "objectID": "presentations/analitici.html#ottimizzazione-economica",
+    "href": "presentations/analitici.html#ottimizzazione-economica",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Ottimizzazione economica",
+    "text": "Ottimizzazione economica\n\nL’analisi fatta dipende dalla possibilità di esprimere analiticamente \\(T_m(V)\\)\n\nCiò è possibile solo per lavorazioni elementari (es. la tornitura cilindrica). In caso di lavorazioni più complesse tale relazione può solo essere calcolata per punti mediante simulazione del processo (via funzionalità CAM o CNC, che comporta tempi e costi notevoli)\nSi basa sulla disponibilità di una legge di usura validata e affidabile\nÈ conveniente solo per grandi e grandissimi lotti (fattore di scala)"
   },
   {
     "objectID": "presentations/intro.html#contenuti-del-corso",
@@ -77,10 +224,66 @@
     "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
   },
   {
-    "objectID": "presentations/numerici.html#contenuti-del-corso",
-    "href": "presentations/numerici.html#contenuti-del-corso",
+    "objectID": "presentations/numerici.html#contenuti",
+    "href": "presentations/numerici.html#contenuti",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
-    "section": "Contenuti del corso",
-    "text": "Contenuti del corso\n\nOttimizzazione: cosa significa?\nMetodi analitici\nMetodi numerici\nMetodi sperimentali"
+    "section": "Contenuti",
+    "text": "Contenuti\n\nSimulazione numerica: Analisi/Metodo agli Elementi Finiti (FEA/FEM)\nOttimizzazione numerica"
+  },
+  {
+    "objectID": "presentations/numerici.html#come-funziona-il-metodo",
+    "href": "presentations/numerici.html#come-funziona-il-metodo",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Come funziona il metodo",
+    "text": "Come funziona il metodo\nIl metodo FEM:\n\nSuddivide il dominio in studio in elementi più piccoli\nOgni elemento dispone di una funzione di forma\nLa funzione di forma approssima il comportamento della fisica in esame\nAd esempio, in caso elastico la funzione di forma rappresenta la relazione tra forza e spostamento\nLe funzioni di forma forniscono una relazione matriciale tra il vettore dei gradi di libertà (DoF) \\(u_n\\) e il vettore dei carichi \\(f_n\\), tramite la matrice di rigidezza locale \\(\\mathbf{k}_e\\): \\[\nf_n = \\mathbf{k}_e\\cdot u_n\n\\]\nLe matrici locali vengono combinate in una matrice globale \\(\\mathbf{K}\\), tale che: \\(f = \\mathbf{K}\\cdot u\\)\nL’inversione della matrice di rigidezza globale fornisce i DoF \\(u\\) come risultato dei carichi \\(f\\)"
+  },
+  {
+    "objectID": "presentations/numerici.html#come-funziona-il-metodo-esempio",
+    "href": "presentations/numerici.html#come-funziona-il-metodo-esempio",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Come funziona il metodo — Esempio",
+    "text": "Come funziona il metodo — Esempio\n\n\n\nConsideriamo una trave snella incastrata con carico trasverso \\(F\\) ad una estremità\nRappresentiamo la trave con due elementi di uguale lunghezza\nOgni nodo \\(i\\) ha due DoF: spostamento verticale \\(w_i\\) e rotazione \\(\\vartheta_i\\)\n\n\n\n\n\nTrave incastrata, in due elementi\n\n\n\n\n\n\n\n\n\nApprossimazione\n\n\nOvviamente la soluzione è approssimata, come si osserva conforntando i segmenti tratteggiati (soluzione FEM) con la deformata reale (curva parabolica spessa)\nTuttavia, è evidente che è sufficiente infittire la griglia di nodi (p mesh) per ridurre a piacere l’errore di approssimazione. Il limite è il costo computazionale."
+  },
+  {
+    "objectID": "presentations/numerici.html#come-funziona-il-metodo-esempio-1",
+    "href": "presentations/numerici.html#come-funziona-il-metodo-esempio-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Come funziona il metodo — Esempio",
+    "text": "Come funziona il metodo — Esempio\nPer un elemento a due nodi, il sistema di equazioni locali che collega i DoF con i carichi è \\(f_n = \\mathbf{k}_e\\cdot u_n\\), dove:\n\n\\(f_n = [f_1, m_1, f_2, m_2]\\), dove \\(f_i\\) sono le forze e \\(m_i\\) sono i momenti\n\\(u_n = [w_1, \\vartheta_1, u_2, \\vartheta_2]\\)\n\\(k_e\\) è una matrice simmetrica: \\[\n\\mathbf{k}_e = \\frac{EI}{L_e^3}\n\\begin{bmatrix}\n12 & 6L_e & -12 & 6L_e  \\\\\n\\cdot & 4L_e^2 & -6L_e & 2L_e^2 \\\\\n\\cdot & \\cdot & 12 & -6L_e \\\\\n\\cdot & \\cdot & \\cdot & 4L_e^2\n\\end{bmatrix}\n\\]\n\nIl passo successivo richiede l’assemblaggio della matrice di rigidezza globale \\(K\\)"
+  },
+  {
+    "objectID": "presentations/numerici.html#come-funziona-il-metodo-esempio-2",
+    "href": "presentations/numerici.html#come-funziona-il-metodo-esempio-2",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Come funziona il metodo — Esempio",
+    "text": "Come funziona il metodo — Esempio\n\nSi mappano gli indici locali in indici globali:\n\nelemento 1: \\([1, 2, 3, 4]\\rightarrow[1, 2, 3, 4] = c^{(1)}\\)\nelemento 2: \\([1, 2, 3, 4]\\rightarrow[3, 4, 5, 6] = c^{(2)}\\)\n\nSi compone \\(\\mathbf{K}\\) che deve essere una matrice \\(6\\times 6\\) (dato che ho 6 indici globali e quindi 6 equazioni)\nGli indici della matrice globale sono: \\[\n\\mathbf{K} = \\mathbf{I}_{6\\times 6} \\\\\n\\forall i, j \\in \\{1, \\dots, 4\\}, e \\in \\{1, 2\\}:~~~\\mathbf{K}_{c^{(e)}_i, c^{(e)}_j} += \\mathbf{k}^{(e)}_{i,j}\n\\]"
+  },
+  {
+    "objectID": "presentations/numerici.html#come-funziona-il-metodo-esempio-3",
+    "href": "presentations/numerici.html#come-funziona-il-metodo-esempio-3",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Come funziona il metodo — Esempio",
+    "text": "Come funziona il metodo — Esempio\nIn definitiva:\n\\[\n\\begin{bmatrix}\nk^{(1)}_{11}  & k^{(1)}_{12}  & k^{(1)}_{13}  & k^{(1)}_{14}  & 0 & 0\\\\\n\\cdot  & k^{(1)}_{22}  & k^{(1)}_{13}  & k^{(1)}_{14}  & 0 & 0\\\\\n\\cdot & \\cdot  & k^{(1)}_{33} +  k^{(2)}_{11} & k^{(1)}_{34} + k^{(2)}_{12}  & 0 & 0\\\\\n\\cdot & \\cdot & \\cdot & k^{(1)}_{14} +k^{(2)}_{22}  & k^{(2)}_{23} & k^{(2)}_{24}\\\\\n\\cdot & \\cdot & \\cdot & \\cdot & k^{(2)}_{33} & k^{(2)}_{34}\\\\\n\\cdot & \\cdot & \\cdot & \\cdot & \\cdot & k^{(2)}_{44}\n\\end{bmatrix}\n\\cdot\n\\begin{bmatrix}\nw_1 \\\\ \\vartheta_1 \\\\\nw_2 \\\\ \\vartheta_2 \\\\\nw_3 \\\\ \\vartheta_3 \\\\\n\\end{bmatrix} =\n\\begin{bmatrix}\nF_1 \\\\ M_1 \\\\\nF_2 \\\\ M_2 \\\\\nF_3 \\\\ M_3 \\\\\n\\end{bmatrix}\n\\]\nChe va risolta calcolando l’inversa \\(\\mathbf{K}^{-1}\\), per cui \\(u = \\mathbf{K}^{-1}\\cdot f\\)"
+  },
+  {
+    "objectID": "presentations/numerici.html#commenti",
+    "href": "presentations/numerici.html#commenti",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Commenti",
+    "text": "Commenti\n\nIl metodo è adatto a qualsiasi fisica purché siano disponibili relazioni tra variabili di stato (spostamenti/rotazioni, temperature, velocità, carica elettrica, …) e carichi applicati (forze/momenti, calore, pressione, campo elettrico, …)\nSe le condizioni di carico dipendono dallo stato (ad es. grandi spostamenti, deformazione plastica) si produce iterando su passi di applicazione del carico\nLe fisiche possono essere calcolate in parallelo se non si influenzano\nSe le fisiche sono correlate, si procede in maniera iterativa: si applicano gradualmente i carichi alla fisica A, si calcolano le variabili di stato, si applica gradualmente il carico della fisica B, e si itera. È il caso di problemi termoelastici, in cui lo scambio termico dipende dalla deformazione e le proprietùà elastiche dipendono dalla temperatura\n\n\n\n\n\n\n\nImportante\n\n\nIn altre parole, ogni problema la cui relazione carico-stato non sia lineare e/o sia accoppiata con un’altra fisica richiede un approccio iterativo che è computazionalmente oneroso e può non convergere"
+  },
+  {
+    "objectID": "presentations/numerici.html#proprietà-del-mezzomateriale",
+    "href": "presentations/numerici.html#proprietà-del-mezzomateriale",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Proprietà del mezzo/materiale",
+    "text": "Proprietà del mezzo/materiale\nIl limite principale dei metodi FEM è la disponibilità di un modello di materiale calibrato\n\nper un modello lineare elastico sono sufficienti il modulo elastico \\(E\\) e il coefficiente di Poisson \\(\\nu\\)\nper un processo termo-elastoplastico, che consideri anche la relazione tra proprietà meccaniche, temperatura, velocità di deformazione, incrudimento, e generazione di calore associato alla deformazione plastica, i modelli sono molto meno assodati, sono spesso semi-empirici o empirici, ad es. Johnson-Cook: \\[\n\\sigma = \\left(Y + B\\,\\varepsilon_p^n\\right)\\left(1 + C \\ln\\frac{\\dot{\\varepsilon}_p}{\\dot{\\varepsilon}_0}\\right)\\left(1 - T^m\\right)\n\\] dove: \\(Y\\) è lo sforzo di snervamento, \\(B\\) è il coefficiente di incrudimento, \\(n\\) è l’esponente di incrudimento, \\(C\\) è la sensibilità alla velocità di deformazione, \\(m\\) è il thermal softening\n\n\n\nVedi ad es. la Barra di Hopkinson per le prove di deformazione ad altissima velocità (comunque inferiori alle velocità per un processo di taglio)"
+  },
+  {
+    "objectID": "presentations/numerici.html#esempi",
+    "href": "presentations/numerici.html#esempi",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Esempi",
+    "text": "Esempi\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nLe sole simulazioni richiedono tempi di calcolo di decine di ore\nOgni modello simulativo deve essere verificato per convergenza (dimensione mesh) e validato"
   }
 ]

@@ -6,7 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.13.1/bootstrap-icons.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.30">
 
   <meta name="author" content="Paolo Bosetti">
@@ -29,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-dab8fc7c1e47f8d5d6c847243235384c.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ae24b9acd77f9cc9397af828aafb10b0.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -145,14 +146,187 @@ Paolo Bosetti
 
   <p class="date">03 novembre 2025</p>
 </section>
-<section id="contenuti-del-corso" class="slide level2">
-<h2>Contenuti del corso</h2>
+<section id="contenuti" class="slide level2">
+<h2>Contenuti</h2>
 <ul>
-<li>Ottimizzazione: cosa significa?</li>
-<li>Metodi analitici</li>
-<li>Metodi numerici</li>
-<li>Metodi sperimentali</li>
+<li>Simulazione numerica: Analisi/Metodo agli Elementi Finiti (FEA/FEM)</li>
+<li>Ottimizzazione numerica</li>
 </ul>
+</section>
+<section>
+<section id="elementi-finiti" class="title-slide slide level1 center">
+<h1>Elementi finiti</h1>
+<p>Ovvero: <em>Divide et Impera</em></p>
+</section>
+<section id="come-funziona-il-metodo" class="slide level2">
+<h2>Come funziona il metodo</h2>
+<p>Il metodo FEM:</p>
+<ul>
+<li>Suddivide il dominio in studio in elementi più piccoli</li>
+<li>Ogni elemento dispone di una <strong>funzione di forma</strong></li>
+<li>La funzione di forma approssima il comportamento della <strong>fisica</strong> in esame</li>
+<li>Ad esempio, in caso elastico la funzione di forma rappresenta la relazione tra forza e spostamento</li>
+<li>Le funzioni di forma forniscono una relazione matriciale tra il vettore dei gradi di libertà (DoF) <span class="math inline">\(u_n\)</span> e il vettore dei carichi <span class="math inline">\(f_n\)</span>, tramite la matrice di rigidezza locale <span class="math inline">\(\mathbf{k}_e\)</span>: <span class="math display">\[
+f_n = \mathbf{k}_e\cdot u_n
+\]</span></li>
+<li>Le matrici locali vengono combinate in una <strong>matrice globale</strong> <span class="math inline">\(\mathbf{K}\)</span>, tale che: <span class="math inline">\(f = \mathbf{K}\cdot u\)</span></li>
+<li>L’<strong>inversione della matrice di rigidezza globale</strong> fornisce i DoF <span class="math inline">\(u\)</span> come risultato dei carichi <span class="math inline">\(f\)</span></li>
+</ul>
+</section>
+<section id="come-funziona-il-metodo-esempio" class="slide level2">
+<h2>Come funziona il metodo — Esempio</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Consideriamo una trave snella incastrata con carico trasverso <span class="math inline">\(F\)</span> ad una estremità</li>
+<li>Rappresentiamo la trave con due elementi di uguale lunghezza</li>
+<li>Ogni <strong>nodo</strong> <span class="math inline">\(i\)</span> ha due DoF: spostamento verticale <span class="math inline">\(w_i\)</span> e rotazione <span class="math inline">\(\vartheta_i\)</span></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/fem_1.png"></p>
+<figcaption>Trave incastrata, in due elementi</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Approssimazione</strong></p>
+</div>
+<div class="callout-content">
+<p>Ovviamente la soluzione è approssimata, come si osserva conforntando i segmenti tratteggiati (soluzione FEM) con la deformata reale (curva parabolica spessa)</p>
+<p>Tuttavia, è evidente che è sufficiente <strong>infittire la griglia di nodi</strong> (p <em>mesh</em>) per ridurre <strong>a piacere</strong> l’errore di approssimazione. Il limite è il costo computazionale.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="come-funziona-il-metodo-esempio-1" class="slide level2">
+<h2>Come funziona il metodo — Esempio</h2>
+<p>Per un elemento a due nodi, il sistema di <strong>equazioni locali</strong> che collega i DoF con i carichi è <span class="math inline">\(f_n = \mathbf{k}_e\cdot u_n\)</span>, dove:</p>
+<ul>
+<li><span class="math inline">\(f_n = [f_1, m_1, f_2, m_2]\)</span>, dove <span class="math inline">\(f_i\)</span> sono le forze e <span class="math inline">\(m_i\)</span> sono i momenti</li>
+<li><span class="math inline">\(u_n = [w_1, \vartheta_1, u_2, \vartheta_2]\)</span></li>
+<li><span class="math inline">\(k_e\)</span> è una matrice simmetrica: <span class="math display">\[
+\mathbf{k}_e = \frac{EI}{L_e^3}
+\begin{bmatrix}
+12 &amp; 6L_e &amp; -12 &amp; 6L_e  \\
+\cdot &amp; 4L_e^2 &amp; -6L_e &amp; 2L_e^2 \\
+\cdot &amp; \cdot &amp; 12 &amp; -6L_e \\
+\cdot &amp; \cdot &amp; \cdot &amp; 4L_e^2
+\end{bmatrix}
+\]</span></li>
+</ul>
+<p>Il passo successivo richiede l’<strong>assemblaggio della matrice di rigidezza globale <span class="math inline">\(K\)</span></strong></p>
+</section>
+<section id="come-funziona-il-metodo-esempio-2" class="slide level2">
+<h2>Come funziona il metodo — Esempio</h2>
+<ul>
+<li>Si mappano gli indici locali in indici globali:
+<ul>
+<li>elemento 1: <span class="math inline">\([1, 2, 3, 4]\rightarrow[1, 2, 3, 4] = c^{(1)}\)</span></li>
+<li>elemento 2: <span class="math inline">\([1, 2, 3, 4]\rightarrow[3, 4, 5, 6] = c^{(2)}\)</span></li>
+</ul></li>
+<li>Si compone <span class="math inline">\(\mathbf{K}\)</span> che deve essere una matrice <span class="math inline">\(6\times 6\)</span> (dato che ho 6 indici globali e quindi 6 equazioni)</li>
+<li>Gli indici della matrice globale sono: <span class="math display">\[
+\mathbf{K} = \mathbf{I}_{6\times 6} \\
+\forall i, j \in \{1, \dots, 4\}, e \in \{1, 2\}:~~~\mathbf{K}_{c^{(e)}_i, c^{(e)}_j} += \mathbf{k}^{(e)}_{i,j}
+\]</span></li>
+</ul>
+</section>
+<section id="come-funziona-il-metodo-esempio-3" class="slide level2">
+<h2>Come funziona il metodo — Esempio</h2>
+<p>In definitiva:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+k^{(1)}_{11}  &amp; k^{(1)}_{12}  &amp; k^{(1)}_{13}  &amp; k^{(1)}_{14}  &amp; 0 &amp; 0\\
+\cdot  &amp; k^{(1)}_{22}  &amp; k^{(1)}_{13}  &amp; k^{(1)}_{14}  &amp; 0 &amp; 0\\
+\cdot &amp; \cdot  &amp; k^{(1)}_{33} +  k^{(2)}_{11} &amp; k^{(1)}_{34} + k^{(2)}_{12}  &amp; 0 &amp; 0\\
+\cdot &amp; \cdot &amp; \cdot &amp; k^{(1)}_{14} +k^{(2)}_{22}  &amp; k^{(2)}_{23} &amp; k^{(2)}_{24}\\
+\cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; k^{(2)}_{33} &amp; k^{(2)}_{34}\\
+\cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; k^{(2)}_{44}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+w_1 \\ \vartheta_1 \\
+w_2 \\ \vartheta_2 \\
+w_3 \\ \vartheta_3 \\
+\end{bmatrix} =
+\begin{bmatrix}
+F_1 \\ M_1 \\
+F_2 \\ M_2 \\
+F_3 \\ M_3 \\
+\end{bmatrix}
+\]</span></p>
+<p>Che va risolta calcolando l’<strong>inversa</strong> <span class="math inline">\(\mathbf{K}^{-1}\)</span>, per cui <span class="math inline">\(u = \mathbf{K}^{-1}\cdot f\)</span></p>
+</section>
+<section id="commenti" class="slide level2">
+<h2>Commenti</h2>
+<ul>
+<li>Il metodo è adatto a qualsiasi <strong>fisica</strong> purché siano disponibili relazioni tra <span class="bred">variabili di stato</span> (spostamenti/rotazioni, temperature, velocità, carica elettrica, …) e <span class="bgreen">carichi applicati</span> (forze/momenti, calore, pressione, campo elettrico, …)</li>
+<li>Se le condizioni di carico dipendono dallo stato (ad es. grandi spostamenti, deformazione plastica) si produce iterando su passi di applicazione del carico</li>
+<li>Le fisiche possono essere calcolate in parallelo <strong>se non si influenzano</strong></li>
+<li>Se le fisiche sono <strong>correlate</strong>, si procede in maniera iterativa: si applicano gradualmente i carichi alla fisica A, si calcolano le variabili di stato, si applica gradualmente il carico della fisica B, e si itera. È il caso di problemi <strong>termoelastici</strong>, in cui lo scambio termico dipende dalla deformazione e le proprietùà elastiche dipendono dalla temperatura</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>In altre parole, ogni problema la cui relazione carico-stato non sia lineare e/o sia accoppiata con un’altra fisica richiede un approccio iterativo che è computazionalmente oneroso e può non convergere</p>
+</div>
+</div>
+</div>
+</section>
+<section id="proprietà-del-mezzomateriale" class="slide level2">
+<h2>Proprietà del mezzo/materiale</h2>
+<p>Il limite principale dei metodi FEM è la <strong>disponibilità di un modello di materiale calibrato</strong></p>
+<ul>
+<li>per un modello lineare elastico sono sufficienti il <strong>modulo elastico</strong> <span class="math inline">\(E\)</span> e il <strong>coefficiente di Poisson</strong> <span class="math inline">\(\nu\)</span></li>
+<li>per un processo termo-elastoplastico, che consideri anche la relazione tra proprietà meccaniche, temperatura, velocità di deformazione, incrudimento, e generazione di calore associato alla deformazione plastica, i modelli sono molto meno assodati, sono spesso semi-empirici o empirici, ad es. Johnson-Cook: <span class="math display">\[
+\sigma = \left(Y + B\,\varepsilon_p^n\right)\left(1 + C \ln\frac{\dot{\varepsilon}_p}{\dot{\varepsilon}_0}\right)\left(1 - T^m\right)
+\]</span> dove: <span class="math inline">\(Y\)</span> è lo sforzo di snervamento, <span class="math inline">\(B\)</span> è il coefficiente di incrudimento, <span class="math inline">\(n\)</span> è l’esponente di incrudimento, <span class="math inline">\(C\)</span> è la sensibilità alla velocità di deformazione, <span class="math inline">\(m\)</span> è il <em>thermal softening</em></li>
+</ul>
+
+<aside><div>
+<p>Vedi ad es. la <a href="https://en.wikipedia.org/wiki/Split-Hopkinson_pressure_bar" target="wiki">Barra di Hopkinson</a> per le prove di deformazione ad altissima velocità (comunque inferiori alle velocità per un processo di taglio)</p>
+</div></aside></section>
+<section id="esempi" class="slide level2">
+<h2>Esempi</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="https://ars.els-cdn.com/content/image/1-s2.0-S1526612517300439-gr9.jpg"></p>
+</div><div class="column">
+<p><img data-src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs11831-018-09313-9/MediaObjects/11831_2018_9313_Fig14_HTML.png"></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Le sole simulazioni richiedono tempi di calcolo di decine di ore</li>
+<li>Ogni modello simulativo deve essere verificato per convergenza (dimensione <em>mesh</em>) e <strong>validato</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section id="segue" class="title-slide slide level1 center">
+<h1>Segue…</h1>
+<p><a href="../presentations/sperimentali.html">Metodi sperimentali <i class="bi-arrow-right-square-fill " style="" role="img" aria-hidden="true"></i></a></p>
 
 
 </section>

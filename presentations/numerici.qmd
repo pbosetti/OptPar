@@ -12,6 +12,16 @@ categories: [intro, meeting]
 format: revealjs
 ---
 
+```{r setup}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(neldermead)
+```
+
 
 ## Contenuti
 
@@ -166,6 +176,149 @@ Vedi ad es. la [Barra di Hopkinson](https://en.wikipedia.org/wiki/Split-Hopkinso
 :::
 :::
 :::
+
+
+# Ottimizzazione numerica
+
+
+## Nelder-Mead
+
+:::columns
+:::column
+* Si definisce un **simplesso** un iper-poligono con N vertici su una superficie di risposta in uno spazio N-dimensionale
+* Il simplesso viene iterativamente trasformato **precipitando** nel minimo locale
+
+![Simplesso in 2-D: possibili trasformazioni](https://upload.wikimedia.org/wikipedia/commons/7/72/An-iteration-of-the-Nelder-Mead-method-over-two-dimensional-space-showing-point-p-min.png){width="80%"}
+:::
+
+:::column
+![Simplesso Nelder-Mead nella funzione di Rosenbrock](https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif)
+:::
+:::
+
+
+## Traiettoria --- Minimi locali
+
+```{r}
+himmelblau <- function(x, y) (x^2+y-11)^2+(x+y^2-7)^2
+df <- expand.grid(
+  x = seq(-6, 6, length.out=100),
+  y = seq(-6, 6, length.out=100)
+) %>% 
+  mutate(z = himmelblau(x, y))
+
+p <- df %>% 
+  ggplot(aes(x=x, y=y, z=sqrt(z))) + 
+  geom_contour_filled(bins=20, show.legend = FALSE) + 
+  geom_contour(bins=20, show.legend = FALSE, color="black") + 
+  scale_fill_viridis_d(option="D", direction=1) + 
+  coord_fixed()
+```
+
+:::columns
+:::column
+
+:::
+
+:::column
+```{r}
+p
+```
+:::
+:::
+
+
+
+## Traiettoria --- Minimi locali
+
+:::callout-note
+La **posizione di partenza** del simplesso può determinare il risultato finale, precipitando in minimi differenti
+:::
+
+```{r}
+optfun <- function(x = NULL,
+                   index = NULL,
+                   fmsfundata = NULL) {
+  return(list(
+    f = himmelblau(x[1], x[2]),
+    g = c(),
+    c = c(),
+    gc = c(),
+    index = index,
+    this = list(costfargument = fmsfundata)
+  ))
+}
+nm <- neldermead()
+nm <- neldermead.set(nm, 'numberofvariables', 2)
+nm <- neldermead.set(nm, 'function', optfun)
+nm <- neldermead.set(nm, 'storehistory', TRUE)
+
+x0 <- transpose(c(4, 4))
+nm <- neldermead.set(nm, 'x0', x0)
+nm <- neldermead.search(nm)
+
+traj <- tibble(
+  step = 1:neldermead.get(nm, "iterations"),
+  x = map_dbl(neldermead.get(nm, 'historyxopt'), ~.[1]),
+  y = map_dbl(neldermead.get(nm, 'historyxopt'), ~.[2]),
+) 
+
+df <- expand.grid(
+  x = seq(-6, 6, length.out=300),
+  y = seq(-6, 6, length.out=300)
+) %>% 
+  mutate( z = himmelblau(x, y)) 
+
+breaks <- c(0.1, 1, 5, 10, 50, 100, 500, 1000, 2000, 5000)
+p1 <- df %>% 
+  ggplot(aes(x=x, y=y)) + 
+  geom_contour_filled(aes(z=z), breaks=breaks, show.legend = FALSE) +
+  geom_contour(aes(z=z), breaks=breaks) +
+  geom_point(data=slice(traj, 1, n()), color="orange", shape=c(15, 16), size=3) +
+  geom_path(data=traj, color="red") + 
+  coord_equal()
+```
+```{r}
+nm2 <- neldermead()
+nm2 <- neldermead.set(nm2, 'numberofvariables', 2)
+nm2 <- neldermead.set(nm2, 'function', optfun)
+nm2 <- neldermead.set(nm2, 'storehistory', TRUE)
+
+x0 <- transpose(c(-1.2, -1.5))
+nm2 <- neldermead.set(nm2, 'x0', x0)
+nm2 <- neldermead.search(nm2)
+
+traj <- tibble(
+  step = 1:neldermead.get(nm2, "iterations"),
+  x = map_dbl(neldermead.get(nm2, 'historyxopt'), ~.[1]),
+  y = map_dbl(neldermead.get(nm2, 'historyxopt'), ~.[2]),
+) 
+
+p2 <- df %>% 
+  ggplot(aes(x=x, y=y)) + 
+  geom_contour_filled(aes(z=z), breaks=breaks, show.legend = FALSE) +
+  geom_contour(aes(z=z), breaks=breaks) +
+  geom_point(data=slice(traj, 1, n()), color="orange", shape=c(15, 16), size=3) +
+  geom_path(data=traj, color="red") + 
+  coord_equal()
+```
+
+:::columns
+:::column
+```{r}
+p1
+```
+:::
+
+:::column
+```{r}
+p2
+```
+:::
+:::
+
+
+
 
 # Segue...
 

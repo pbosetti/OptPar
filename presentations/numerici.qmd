@@ -13,11 +13,160 @@ format: revealjs
 ---
 
 
-## Contenuti del corso
+## Contenuti
 
-* Ottimizzazione: cosa significa?
-* Metodi analitici
-* Metodi numerici
-* Metodi sperimentali
+* Simulazione numerica: Analisi/Metodo agli Elementi Finiti (FEA/FEM)
+* Ottimizzazione numerica
 
 
+# Elementi finiti
+Ovvero: *Divide et Impera*
+
+
+## Come funziona il metodo
+
+Il metodo FEM:
+
+* Suddivide il dominio in studio in elementi più piccoli
+* Ogni elemento dispone di una **funzione di forma**
+* La funzione di forma approssima il comportamento della **fisica** in esame
+* Ad esempio, in caso elastico la funzione di forma rappresenta la relazione tra forza e spostamento
+* Le funzioni di forma forniscono una relazione matriciale tra il vettore dei gradi di libertà (DoF) $u_n$ e il vettore dei carichi $f_n$, tramite la matrice di rigidezza locale $\mathbf{k}_e$:
+$$
+f_n = \mathbf{k}_e\cdot u_n
+$$
+* Le matrici locali vengono combinate in una **matrice globale** $\mathbf{K}$, tale che: $f = \mathbf{K}\cdot u$
+* L'**inversione della matrice di rigidezza globale** fornisce i DoF $u$ come risultato dei carichi $f$
+
+
+## Come funziona il metodo --- Esempio
+
+:::columns
+:::column
+* Consideriamo una trave snella incastrata con carico trasverso $F$ ad una estremità
+* Rappresentiamo la trave con due elementi di uguale lunghezza
+* Ogni **nodo** $i$ ha due DoF: spostamento verticale $w_i$ e rotazione $\vartheta_i$
+:::
+
+
+:::column
+![Trave incastrata, in due elementi](../images/fem_1.png)
+:::
+:::
+
+:::callout-important
+## Approssimazione
+Ovviamente la soluzione è approssimata, come si osserva conforntando i segmenti tratteggiati (soluzione FEM) con la deformata reale (curva parabolica spessa)
+
+Tuttavia, è evidente che è sufficiente **infittire la griglia di nodi** (p *mesh*) per ridurre **a piacere** l'errore di approssimazione. Il limite è il costo computazionale.
+:::
+
+
+## Come funziona il metodo --- Esempio
+
+Per un elemento a due nodi, il sistema di **equazioni locali** che collega i DoF con i carichi è $f_n = \mathbf{k}_e\cdot u_n$, dove:
+
+* $f_n = [f_1, m_1, f_2, m_2]$, dove $f_i$ sono le forze e $m_i$ sono i momenti
+* $u_n = [w_1, \vartheta_1, u_2, \vartheta_2]$
+* $k_e$ è una matrice simmetrica:
+$$
+\mathbf{k}_e = \frac{EI}{L_e^3}
+\begin{bmatrix}
+12 & 6L_e & -12 & 6L_e  \\
+\cdot & 4L_e^2 & -6L_e & 2L_e^2 \\
+\cdot & \cdot & 12 & -6L_e \\
+\cdot & \cdot & \cdot & 4L_e^2
+\end{bmatrix}
+$$
+
+Il passo successivo richiede l'**assemblaggio della matrice di rigidezza globale $K$**
+
+
+## Come funziona il metodo --- Esempio
+
+* Si mappano gli indici locali in indici globali:
+  - elemento 1: $[1, 2, 3, 4]\rightarrow[1, 2, 3, 4] = c^{(1)}$
+  - elemento 2: $[1, 2, 3, 4]\rightarrow[3, 4, 5, 6] = c^{(2)}$
+* Si compone $\mathbf{K}$ che deve essere una matrice $6\times 6$ (dato che ho 6 indici globali e quindi 6 equazioni)
+* Gli indici della matrice globale sono:
+$$
+\mathbf{K} = \mathbf{I}_{6\times 6} \\
+\forall i, j \in \{1, \dots, 4\}, e \in \{1, 2\}:~~~\mathbf{K}_{c^{(e)}_i, c^{(e)}_j} += \mathbf{k}^{(e)}_{i,j}
+$$
+
+## Come funziona il metodo --- Esempio
+
+In definitiva:
+
+$$
+\begin{bmatrix}
+k^{(1)}_{11}  & k^{(1)}_{12}  & k^{(1)}_{13}  & k^{(1)}_{14}  & 0 & 0\\
+\cdot  & k^{(1)}_{22}  & k^{(1)}_{13}  & k^{(1)}_{14}  & 0 & 0\\
+\cdot & \cdot  & k^{(1)}_{33} +  k^{(2)}_{11} & k^{(1)}_{34} + k^{(2)}_{12}  & 0 & 0\\
+\cdot & \cdot & \cdot & k^{(1)}_{14} +k^{(2)}_{22}  & k^{(2)}_{23} & k^{(2)}_{24}\\
+\cdot & \cdot & \cdot & \cdot & k^{(2)}_{33} & k^{(2)}_{34}\\
+\cdot & \cdot & \cdot & \cdot & \cdot & k^{(2)}_{44}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+w_1 \\ \vartheta_1 \\
+w_2 \\ \vartheta_2 \\
+w_3 \\ \vartheta_3 \\
+\end{bmatrix} = 
+\begin{bmatrix}
+F_1 \\ M_1 \\
+F_2 \\ M_2 \\
+F_3 \\ M_3 \\
+\end{bmatrix}
+$$
+
+Che va risolta calcolando l'**inversa** $\mathbf{K}^{-1}$, per cui $u = \mathbf{K}^{-1}\cdot f$
+
+
+## Commenti
+
+* Il metodo è adatto a qualsiasi **fisica** purché siano disponibili relazioni tra [variabili di stato]{.bred} (spostamenti/rotazioni, temperature, velocità, carica elettrica, ...) e [carichi applicati]{.bgreen} (forze/momenti, calore, pressione, campo elettrico, ...)
+* Se le condizioni di carico dipendono dallo stato (ad es. grandi spostamenti, deformazione plastica) si produce iterando su passi di applicazione del carico
+* Le fisiche possono essere calcolate in parallelo **se non si influenzano**
+* Se le fisiche sono **correlate**, si procede in maniera iterativa: si applicano gradualmente i carichi alla fisica A, si calcolano le variabili di stato, si applica gradualmente il carico della fisica B, e si itera. È il caso di problemi **termoelastici**, in cui lo scambio termico dipende dalla deformazione e le proprietùà elastiche dipendono dalla temperatura
+
+:::callout-important
+In altre parole, ogni problema la cui relazione carico-stato non sia lineare e/o sia accoppiata con un'altra fisica richiede un approccio iterativo che è computazionalmente oneroso e può non convergere
+:::
+
+
+## Proprietà del mezzo/materiale
+
+Il limite principale dei metodi FEM è la **disponibilità di un modello di materiale calibrato**
+
+* per un modello lineare elastico sono sufficienti il **modulo elastico** $E$ e il **coefficiente di Poisson** $\nu$
+* per un processo termo-elastoplastico, che consideri anche la relazione tra proprietà meccaniche, temperatura, velocità di deformazione, incrudimento, e generazione di calore associato alla deformazione plastica, i modelli sono molto meno assodati, sono spesso semi-empirici o empirici, ad es. Johnson-Cook:
+$$
+\sigma = \left(Y + B\,\varepsilon_p^n\right)\left(1 + C \ln\frac{\dot{\varepsilon}_p}{\dot{\varepsilon}_0}\right)\left(1 - T^m\right)
+$$
+dove: $Y$ è lo sforzo di snervamento, $B$ è il coefficiente di incrudimento, $n$ è l'esponente di incrudimento, $C$ è la sensibilità alla velocità di deformazione, $m$ è il *thermal softening*
+
+:::aside
+Vedi ad es. la [Barra di Hopkinson](https://en.wikipedia.org/wiki/Split-Hopkinson_pressure_bar){target="wiki"} per le prove di deformazione ad altissima velocità (comunque inferiori alle velocità per un processo di taglio)
+:::
+
+## Esempi
+
+:::columns
+:::column
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1526612517300439-gr9.jpg)
+:::
+
+:::column
+![](https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs11831-018-09313-9/MediaObjects/11831_2018_9313_Fig14_HTML.png)
+
+:::callout-note
+* Le sole simulazioni richiedono tempi di calcolo di decine di ore
+* Ogni modello simulativo deve essere verificato per convergenza (dimensione *mesh*) e **validato**
+:::
+:::
+:::
+
+# Segue...
+
+[Metodi sperimentali {{< bi arrow-right-square-fill >}}](sperimentali.qmd)

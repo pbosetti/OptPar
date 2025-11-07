@@ -3,8 +3,7 @@ project:
 
 website:
   description: "Ottimizzazione dei parametri di un processo manifatturiero"
-  # site-url: "https://pbosetti.github.io/OptPar"
-  site-path: "/OptPar"
+  site-url: "https://pbosetti.github.io/OptPar"
   draft-mode: unlinked
   back-to-top-navigation: true
   reader-mode: true
@@ -48,7 +47,7 @@ format:
     code-annotations: below
     preview-links: auto
     chalkboard: true
-    footer: "MADS --- [https://pbosetti.github.io/OptPar](/OptPar)"
+    footer: "MADS --- [https://pbosetti.github.io/OptPar](/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300

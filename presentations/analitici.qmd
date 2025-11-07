@@ -12,12 +12,531 @@ categories: [intro, meeting]
 format: revealjs
 ---
 
+```{r setup}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+```
 
-## Contenuti del corso
+## Contenuti {{< bi card-list >}}
 
-* Ottimizzazione: cosa significa?
-* [Metodi analitici](analitici.qmd)
-* [Metodi numerici](numerici.qmd)
-* [Metodi sperimentali](sperimentali.qmd)
+-   Richiami minimi di tecnologia meccanica
+-   Modelli di processo
+    -   forze e deformazioni
+    -   usura degli utensili
+    -   ottimizzazione della produttività
+-   Limiti dei modelli di processo analitici
+
+# Richiami minimi di tecnologia meccanica
+
+## Processi con rimozione di materiale
+
+Delle varie categorie di processi meccanici:
+
+-   formatura (in massa e di lamiera/tubo)
+-   sottrattivi (taglio, erosione)
+-   additivi ("stampa 3-D")
+
+consideriamo i processi di **taglio**, perché rappresentativi, perché
+economicamente importanti, perché complessi da modellare
+
+## Formule da officina
+
+* Collegano i **parametri di processo** (velocità di rotazione e avanzamento, profondità di passata) con caratteristiche e proprietà del sistema (macchina + utensile + materiale)
+* Ad esempio, per la tornitura:
+  - Velocità di rotazione $N=\frac{V}{\pi D_0}$
+  - Velocità di avanzamento $f=Nf_r = \frac{Vf_r}{\pi D_0}$
+  - *Material Removal Rate* $\mathit{MRR}=Vfd = \frac{Vf_rfd}{\pi D_0}$
+  
+:::callout-important
+## Il tasso di asportazione di materiale, MRR
+
+È il parametro più importante, perché stabilisce la **fattibilità** di una lavorazione su una certa macchina, dato che l'**energia specifica** $\varepsilon=\frac{P}{\mathit{MRR}}$ è --- in prima approssimazione --- una proprietà del materiale tagliato
+:::
 
 
+# Modelli di processo
+
+## Taglio ortogonale
+
+-   I processi di taglio avvengono con rimozione progressiva di
+    materiale mediante **formazione di truciolo** da parte di un
+    **utensile tagliente**
+-   Il processo di formazione del truciolo impatta sull'intera
+    produzione:
+    -   qualità
+    -   consumo
+    -   costi
+    -   tempi
+
+::: callout-note
+Nonostante si studino i processi di taglio dalla fine del 1800, ci si è
+presto resi conto che il fenomeno è così complesso che è necessario
+limitarsi a condizioni **semplificate**
+:::
+
+## Taglio ortogonale --- definizione
+
+::::: columns
+::: column
+La formazione di truciolo è un processo inerentemente tridimensionale
+
+-   per la geometria del processo
+-   per lo stato di sforzo e deformazione
+
+La più importante semplificazione è considerare:
+
+-   un processo **piano** (*quasi* 2-D)
+-   stato di **deformazione piana**
+-   utensile con tagliente vivo
+:::
+
+::: column
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/jvnbyrhg/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+
+</iframe>
+:::
+:::::
+
+## Taglio ortogonale --- definizione
+
+::::: columns
+::: column
+I **parametri** del modello semplificato sono:
+
+-   angolo di spoglia $\alpha$
+-   angolo del fianco $\beta$
+-   profondità di passata $d$, o spessore del truciolo non tagliato
+    $t_0$
+-   la velocità di taglio $V$
+:::
+
+::: column
+In **uscita** abbiamo:
+
+-   lo spessore del truciolo $t$
+-   angolo del piano di scorrimento $\varphi$
+-   la forza di taglio $\mathbf{F}$ (modulo e direzione)
+:::
+:::::
+
+## Angoli
+
+::::: columns
+::: column
+\begin{align}
+R &= t_0/t_c \\
+r &= \frac{l_s\sin\varphi}{l_s\cos(\varphi-\alpha)} \\
+ &= \frac{\sin\varphi}{\cos(\varphi-\alpha)} \\
+\tan\varphi &= \frac{r \cos\alpha}{1 - r \sin\alpha}
+\end{align}
+:::
+
+::: column
+![Taglio ortogonale](../images/ortogonale.png)
+:::
+:::::
+
+::: callout-important
+## Cioè:
+
+dalla misura dello spessore del truciolo si può risalire alla misura
+dell'angolo del piano di taglio $\varphi$
+:::
+
+## Forze e deformazioni
+
+::: {style="text-align: center;"}
+![Modello a mazzo di carte. Lo spessore dello strato $a$ è dell'ordine
+della dimensione della grana cristallina](../images/cards.png)
+:::
+
+## Forze e deformazioni
+
+::::: columns
+::: column
+\begin{align}
+\gamma &= \frac{AB}{CO} = \frac{AO + OB}{CO} \\
+&= \frac{AO}{CO} + \frac{OB}{CO}\\
+\gamma &= \cot(\varphi) + \tan(\varphi - \alpha)
+\end{align}
+:::
+
+::: {.column style="text-align: center;"}
+![](../images/cards_detail.png)
+:::
+:::::
+
+In altre parole: dagli angoli di spoglia e del piano di taglio è
+possibile calcolare la **deformazione di taglio**
+
+## Forze e deformazioni
+
+::::: columns
+::: column
+\begin{align}
+Vt_0 &= V_ct_c \\
+V_c &= V r = V\frac{\sin\varphi}{\cos(\varphi - \alpha)} \\
+\frac{V_c}{\sin\varphi} &= \frac{V_s}{\sin(\pi/2 - \alpha)}
+\end{align}
+:::
+
+::: {.column style="text-align: center;"}
+![Triangolo delle velocità: $AB = V$, $BC = V_c$,
+$AC = V_s$](../images/cards_detail.png)
+:::
+:::::
+
+$$
+\dot\gamma = \frac{V_s}{a} = \frac{V\cos\alpha}{a\cos(\varphi-\alpha)}
+$$
+
+::: callout-important
+Siccome $a~10\sim\mu\mathrm{m}$ e $V$ può essere molto alto, risulta che
+la velocità di deformazione può essere **estremamente elevata**, cioè
+difficile da riprodurre in condizioni controllate
+:::
+
+## Forze e deformazioni
+
+::::: columns
+::: column
+$$
+\left\{
+\begin{array}{lcl}
+F_s &=& R \cos(\varphi+\beta-\alpha)\\
+F_n &=& R\sin(\varphi+\beta-\alpha)
+\end{array}
+\right.
+$$
+
+$$
+\left\{ 
+\begin{array}{lcl}
+F_s &=& F_c\cos \varphi - F_t\sin\varphi\\
+F_n &=& F_c\sin \varphi + F_t\cos\varphi
+\end{array}
+\right.
+$$ $$
+\left\{
+\begin{array}{lcl}
+F &=& F_c\sin \alpha + F_t\cos\alpha\\
+N &=& F_c\cos \alpha - F_t\sin\alpha
+\end{array}
+\right.
+$$ $$
+\mu = \tan\beta = F/N = -\frac{F_t + F_c\tan\alpha}{F_c - F_t\tan\alpha}
+$$
+
+$$
+F_t = F_c\tan(\beta-\alpha) 
+$$
+:::
+
+::: column
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/twsxsapp/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+
+</iframe>
+:::
+:::::
+
+## Modello di Merchant
+
+::::: columns
+::: column
+Il piano di scorrimento è quello che **minimizza** lo sforzo di taglio
+$\tau$: $$
+\tau=\frac{F_s}{A_s}=R\cos(\varphi+\beta-\alpha)\frac{\sin \varphi}{t_0w}
+$$ $$
+\frac{d}{d\phi}\cos(\phi+\beta-\alpha)\sin\phi = 0
+$$ Risulta:
+
+$$
+\varphi = \pi/4+\frac{\alpha-\beta}{2}
+$$
+:::
+
+::: column
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/vhkbkcxf/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+
+</iframe>
+:::
+:::::
+
+::: callout-important
+Per ora nulla ci consente di stimare la magnitudine di $R$ e la sua
+relazione con $\alpha$ e $\beta$!
+:::
+
+## Energia specifica
+
+Già nei primi del '900 si è osservato che la potenza necessaria a
+sostenere un'operazione di taglio è proporzionale soprattutto al tasso
+di asportazione di materiale:
+
+$$
+P = \varepsilon\mathrm{MRR}
+$$ Il termine $\varepsilon$ è chiamato **energia specifica**, ed è in
+primo luogo una funzione del materiale lavorato
+
+:::::: columns
+::: column
+In misura minore, dipende anche:
+
+-   dalla geometria dell'utensile
+-   dall'affilatura dell'utensile
+-   dall'angolo di attrito $\beta$
+:::
+
+:::: column
+::: callout-important
+Si tratta sempre di relazioni **empiriche**, non supportate da modelli
+basati sulle proprietà del materiale. Anche quando il modello del
+materiale può essere utilizzato, la calibrazione dei parametri è
+**estremamente complessa** (vedi ad es. $\dot\gamma$)
+:::
+::::
+::::::
+
+## Usura degli utensili
+
+Gli utensili sono soggetti a **usura**. Può colpire due parti
+dell'utensile:
+
+-   il [fianco dell'utensile]{.bred}: modifica la geometria
+    dell'utensile a contatto con il pezzo, quindi ha effetto progressivo
+    sulla qualità superficiale e sulla precisione dimensionale
+-   il [petto dell'utensile]{.bblue}: modifica la geometria in contatto
+    con il truciolo: non ha effetto sul pezzo, ma a lungo andare
+    indebolisce l'utensile causandone rottura
+
+Se l'utensile e i parametri di taglio sono scelti correttamente,
+interviene prima l'usura del fianco che quella del petto
+
+La legge di usura è stata formulata da Taylor: $VT^n=K$
+
+::: smaller
+-   $V$ è la velocità di taglio
+-   $T$ è la vita dell'utensile
+-   $n$ e $K$ sono costanti dei materiali; $K$ dipende anche dal
+    criterio di fine vita
+:::
+
+## Legge di Taylor
+
+$VT^n=K \rightarrow \log(V) - n\log(T) = \log(K) \rightarrow \log(T) = \frac{1}{n}\log(V) - \frac{1}{n}\log(K)$
+
+::::: columns
+::: column
+```{r}
+set.seed(0)
+wc <- 200
+round_next <- function(x, d) round(x/d) * d
+w <- function(t,v, k=0.2, a=10) a*v^(k*t)
+life <- function(v, wmax, k=0.2) uniroot(\(x) w(x, v, k) - wmax, interval=c(0, 1e5))$root
+vels <- c(5, 7, 10, 15, 20, 40)
+
+df <- expand.grid(
+  T = seq(2, 10, length.out=50),
+  V = vels
+) %>%
+  mutate(w = w(T, V, k=0.3)) %>% 
+  mutate(w = round_next(w, 5)) %>% 
+  filter(w <= wc + 30) 
+
+df_l <- df %>% 
+  filter(w <= wc) %>% 
+  group_by(V) %>% 
+  summarise(T = T[which.max(w)], w=max(w))
+
+df %>% 
+  mutate(V=factor(V)) %>% 
+  ggplot(aes(x=T, y=w, group=V, color=V)) + 
+  geom_point(data=df_l, aes(x=T, y=w), color="red", shape=4, size=5) +
+  geom_hline(yintercept=wc, color="red", linetype=2) +
+  geom_point() +
+  geom_line() +
+  scale_color_viridis_d(breaks=vels) +
+  labs(x="Tempo (min)", y="Usura (µm)")
+```
+:::
+
+::: column
+```{r}
+df_l %>% 
+  ggplot(aes(x=log(V), y=log(T))) +
+  geom_smooth(method="lm", formula=y~x) +
+  geom_point()
+```
+:::
+:::::
+
+## Ottimizzazione della produttività
+
+I costi di una produzione per lavorazioni meccaniche sono legati a:
+
+-   investimenti e *overhead* ([fissi]{.rbold})
+-   lavoro e materie prime ([variabili]{.rgreen})
+-   costo per pezzo ([variabili]{.rgreen})
+
+I costi sono variabili dipendenti. I parametri di processo sono
+**parametri indipendenti**
+
+::: callout-important
+Possiamo chiederci se ci siano condizioni di processo che
+[massimizzano]{.bgreen} la produttività e/o [minimizzano]{.bred} i costi
+:::
+
+## Ottimizzazione della produttività --- Tornitura
+
+::::: columns
+:::{.column .smaller width="30%"}
+| Simbolo | Significato       |
+|---------|-------------------|
+| $C_p$   | Costo per pezzo   |
+| $C_m$   | Costo lavorazione |
+| $C_s$   | Costo setup       |
+| $C_l$   | Costo caricamento |
+| $C_t$   | Costo utensile    |
+| $L$     | Costo del lavoro  |
+| $O$     | Overhead          |
+
+In **tornitura**:
+$$
+T_m = \frac{L}{fN}=\frac{\pi LD}{fV} \\
+N_p = \frac{T}{T_m} = \frac{fK^{1/n}}{\pi LDV^{1/n-1}}
+$$
+:::
+
+:::{.column width="70%"}
+\begin{align}
+C_p &= C_m + C_s + C_l + C_t \\
+C_m &= T_m(L_m + O_m) \\
+C_l &= T_l(L_m + O_m) \\
+C_t &= \frac{1}{N_p}\left[T_c(L_m+O_m) + T_g(L_g+O_g) + D_c\right] = \frac{C_{t0}}{N_p} \\
+T_p &= T_{s,l} + T_m + \frac{C_{t0}}{N_p}
+\end{align}
+
+:::callout-note
+Risulta $C_p=C_p(V)$ e $T_p = T_p(V)$, quindi possiamo derivare entrambe per identificare una conduzione di ottimo
+:::
+:::
+:::
+
+
+## Ottimizzazione della produttività --- Tornitura
+
+:::columns
+:::column
+**Costi**:
+\begin{align}
+\frac{\partial C_p}{\partial V} &= 0 \\
+V_{o,c} &= \frac{K(L_m+O_m)^n}{[(1/n-1)C_{t0}]^n} \\
+T_{o,c} &= (1/n -1)\frac{C_{t0}}{L_m+O_m}
+\end{align}
+:::
+
+:::column
+**Tempi**:
+\begin{align}
+\frac{\partial T_p}{\partial V} &= 0 \\
+V_{o,t} &= \frac{K}{[(1/n-1)T_c]^n} \\
+T_{0,t} &= (1/n -1)T_c
+\end{align}
+:::
+:::
+
+:::callout-note
+Cosa ottimizziamo? costi o tempi?
+:::
+
+## Ottimizzazione della produttività --- Tornitura
+
+:::columns
+:::column
+* La velocità di taglio ottima $V_{o,c}$ corrisponde alla massima efficienza economica
+* Tuttavia, nel caso di **penali sul ritardo** può valere la pena produrre in corrispondenza di $V_{o,t}$, perché è quella che **massimizza la produttività**
+:::
+
+:::column
+```{r}
+L <- 100
+D <- 50
+f <- 0.5
+Lm <- 1
+Om <- 0.7
+Cs <- 1
+Cl <- 1
+K <- 50
+n <- 0.5
+Ct0 <- 2
+Cs <- 10*(Lm + Om)
+Cl <- 100*(Lm + Om)
+Tm <- function(V) (pi * L * D) / (f*V)
+Np <- function(V) (K/V)^(1/n)/Tm(V)
+Ct <- function(V) Ct0/Np(V)
+Cm <- function(V) Tm(V) * (Lm + Om)
+
+Voc <- (K*(Lm+Om)^n)/((1/n-1)*Ct0)^n
+Vot <- K/((1/n-1)*0.5)^n
+
+tibble(
+  V = seq(10, 300, length.out=100),
+  Cs = Cs,
+  Cl = Cl,
+  Cm = Cm(V),
+  Ct = Ct(V),
+  Cp = Cm + Ct + Cs + Cl
+) %>% 
+  pivot_longer(-V, names_to = "Centro", values_to = "Costo") %>% 
+  mutate(Costo = Costo/70) %>% 
+  ggplot(aes(x=V)) + 
+  geom_line(aes(y=Costo, color=Centro)) + 
+  geom_vline(xintercept=c(Voc, Vot), linetype=2, color="red") + 
+  ylim(c(0, 60)) + 
+  labs(x="Velocità di taglio (m/min)", y="Costo (€)")
+```
+:::
+:::
+
+
+# Limiti dei modelli di processo analitici
+
+## Taglio ortogonale
+
+* Il taglio ortogonale **raramente si applica**. Nella maggior parte delle lavorazioni reali la formazione del truciolo è inerentemente 3-D
+* Il modello di formazione del truciolo è ideale. Nella realtà:
+  - il tagliente non è mai perfettamente acuto
+  - il piano di scorrimento non ha uno spessore nullo
+  - la deformazione non avviene solo sul piano di scorrimento, ma anche sulla superficie lavorata in contatto con il tagliente e tra truciolo e utensile
+* Il campo di sforzi e deformazioni non può essere calcolato in via analitica
+* Non esiste un **modello termico** affidabile che consideri attrito e deformazione plastica come fonti di calore
+* Le velocità di deformazione in gioco $\dot\gamma$ sono estreme: ciò rende molto difficile identificare le proprietà plastiche del materiale in condizioni analoghe
+
+
+## Legge di Taylor
+
+* È un **modello empirico**, cioè non ha basi fisiche ma è basato sulla sola osservazione, quindi non può essere calibrato sulla base di misure di proprietà dei materiali
+* È una legge approssimata: in realtà esistono leggi empiriche più complete in forma $VT^nd^xf^y=K$ che considerano altri parametri di processo, che hanno un'influenza molto minore di $V$ ma che comunque influenzano la vita
+* È **costoso** da calibrare:
+  - la procedura sperimentale è necessariamente lenta e costosa
+  - $n$ dipende dal materiale del pezzo e da quello dell'utensile
+  - $K$ dipende dal **criterio di fine vita**, quindi è specifico dell'utilizzatore (cioè: non si trova tabulato)
+* Anche le leggi più complete non considerano fattori come **la lubrorefrigerazione**
+
+
+## Ottimizzazione economica
+
+* L'analisi fatta dipende dalla possibilità di **esprimere analiticamente** $T_m(V)$
+  - Ciò è possibile **solo per lavorazioni elementari** (es. la tornitura cilindrica). In caso di lavorazioni più complesse tale relazione può solo essere calcolata per punti mediante simulazione del processo (via funzionalità CAM o CNC, che comporta **tempi e costi notevoli**)
+  - Si basa sulla disponibilità di una legge di usura validata e affidabile
+  - È conveniente solo per grandi e grandissimi lotti (fattore di scala)
+  
+
+
+# Segue...
+
+[Metodi numerici {{< bi arrow-right-square-fill >}}](numerici.qmd)

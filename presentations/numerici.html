@@ -329,6 +329,68 @@ F_3 \\ M_3 \\
 <h1>Ottimizzazione numerica</h1>
 
 </section>
+<section id="cosa-significa" class="slide level2">
+<h2>Cosa significa</h2>
+<div class="columns">
+<div class="column">
+<p>Se la funzione/campo da ottimizzare è <strong>analitica</strong>, è possibile usare:</p>
+<ul>
+<li>metodi analitici, quando è possibile calcolare gli zeri della derivata</li>
+<li>metodi numerici derivativi, altrimenti</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-1-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="cosa-significa-1" class="slide level2">
+<h2>Cosa significa</h2>
+<div class="columns">
+<div class="column">
+<p>Se la funzione/campo da ottimizzare è <strong>analitica</strong>, è possibile usare:</p>
+<ul>
+<li>metodi analitici, quando è possibile calcolare gli zeri della derivata</li>
+<li>metodi numerici derivativi, altrimenti</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif"></p>
+<figcaption>Metodo di Newton-Raphson per gli zeri</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="newton-raphson-per-minimizzazione" class="slide level2">
+<h2>Newton-Raphson per minimizzazione</h2>
+
+<img data-src="numerici_files/figure-revealjs/unnamed-chunk-2-1.png" width="2400" class="r-stretch"></section>
+<section id="e-se-il-campo-da-ottimizzare-non-è-analitico" class="slide level2">
+<h2>E se il campo da ottimizzare non è analitico?</h2>
+<div class="columns">
+<div class="column">
+<p>Per quanto visto precedentemente, in casi di applicazione industriale raramente si dispone di un modello analitico, ancor più raramente esso è differenziabile</p>
+<p>Servono quindi <strong>metodi numerici <em>gradient-less</em></strong>, cioè che non richiedono la conoscenza del gradiente per raggiungere il minimo</p>
+<p>Spesso, comunque, il minimo può essere locale e non si ha modo di verificarne l’unicità</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-4-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="nelder-mead" class="slide level2">
 <h2>Nelder-Mead</h2>
 <div class="columns">
@@ -354,23 +416,6 @@ F_3 \\ M_3 \\
 </section>
 <section id="traiettoria-minimi-locali" class="slide level2">
 <h2>Traiettoria — Minimi locali</h2>
-<div class="columns">
-<div class="column">
-
-</div><div class="column">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-2-1.png" width="1500"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="traiettoria-minimi-locali-1" class="slide level2">
-<h2>Traiettoria — Minimi locali</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -390,7 +435,7 @@ F_3 \\ M_3 \\
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-5-1.png" width="1500"></p>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-7-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -400,12 +445,96 @@ F_3 \\ M_3 \\
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500"></p>
+<p><img data-src="numerici_files/figure-revealjs/unnamed-chunk-8-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
+</section></section>
+<section>
+<section id="particle-swarm" class="title-slide slide level1 center">
+<h1>Particle swarm</h1>
+<div class="columns">
+<div class="column">
+<p>Se il processo/fenomeno può mostrare molti <strong>minimi locali</strong> esistono metodi globali (più costosi). Un esempio è lo sciame di particelle</p>
+<ul>
+<li>si inizializza una griglia di particelle in un dominio</li>
+<li>ogni particella ha un vettore velocità inizialmente convergente al centro</li>
+<li>ad ogni passo si valuta la funzione e si corregge la velocità in proporzione alla riduzione della funzione</li>
+<li>si definisce un <strong>criterio di convergenza</strong></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/e/ec/ParticleSwarmArrowsAnimation.gif"></p>
+<figcaption>Metodo Particle swarm in 2-D</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Il metodo può essere combinato con altri metodi a ricerca locale (es. Nelder-Mead)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="cosa-ottimizziamo" class="slide level2">
+<h2>Cosa ottimizziamo?</h2>
+<p>Cioè, cosa rappresenta la <strong>funzione da minimizzare</strong>?</p>
+<ul>
+<li>È una <strong>mappa</strong> <span class="math inline">\(\mathbb{R}^n\rightarrow \mathbb{R}\)</span> che identifica un generico <strong>indice di prestazione</strong> (uno scalare) a partire da una combinazione di parametri (un vettore). Può essere (in ordine crescente di costo):
+<ul>
+<li>una funzione matematica, anche non analitica (con basi fisiche oppure empiriche)</li>
+<li>il risultato di un algoritmo computazionale, ad es. la valutazione di una variabile di stato in un modello FEM parametrico</li>
+<li>una misura effettuata su un processo fisico, reale o in scala</li>
+</ul></li>
+</ul>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ma purtroppo…</strong></p>
+</div>
+<div class="callout-content">
+<p>I processi produttivi spesso sono così complessi che la strada più costosa è anche l’unica percorribile</p>
+</div>
+</div>
+</div>
+</section>
+<section id="nei-processi-produttivi" class="slide level2">
+<h2>Nei processi produttivi</h2>
+<p>Il modello del processo è in generale disponibile <strong>solo in forma numerica</strong></p>
+<ul>
+<li>si definisce un modello numerico <strong>parametrico</strong>:
+<ul>
+<li>ua simulazione FEA di dettaglio, in cui alcuni parametri geometrici o proprietà del materiale sono <strong>parametri</strong></li>
+<li>un modello per il tempo di processo in funzione di parametri di taglio (es. mediante simulazione su CNC o su CAM)</li>
+</ul></li>
+<li>Ad es. mediante NM: si definisce un simplesso iniziale: per ogni <strong>vertice</strong> si calcola la <strong>risposta</strong> valutando il modello simulativo, a cui segue la discesa del gradiente verso il minimo</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>L’ipotesi sottostante è che il modello computazionale sia disponibile e <strong>validato</strong></p>
+</div>
+</div>
+</div>
 </section></section>
 <section id="segue" class="title-slide slide level1 center">
 <h1>Segue…</h1>

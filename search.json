@@ -287,6 +287,34 @@
     "text": "Esempi\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nLe sole simulazioni richiedono tempi di calcolo di decine di ore\nOgni modello simulativo deve essere verificato per convergenza (dimensione mesh) e validato"
   },
   {
+    "objectID": "presentations/numerici.html#cosa-significa",
+    "href": "presentations/numerici.html#cosa-significa",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Cosa significa",
+    "text": "Cosa significa\n\n\nSe la funzione/campo da ottimizzare è analitica, è possibile usare:\n\nmetodi analitici, quando è possibile calcolare gli zeri della derivata\nmetodi numerici derivativi, altrimenti"
+  },
+  {
+    "objectID": "presentations/numerici.html#cosa-significa-1",
+    "href": "presentations/numerici.html#cosa-significa-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Cosa significa",
+    "text": "Cosa significa\n\n\nSe la funzione/campo da ottimizzare è analitica, è possibile usare:\n\nmetodi analitici, quando è possibile calcolare gli zeri della derivata\nmetodi numerici derivativi, altrimenti\n\n\n\n\n\nMetodo di Newton-Raphson per gli zeri"
+  },
+  {
+    "objectID": "presentations/numerici.html#newton-raphson-per-minimizzazione",
+    "href": "presentations/numerici.html#newton-raphson-per-minimizzazione",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Newton-Raphson per minimizzazione",
+    "text": "Newton-Raphson per minimizzazione"
+  },
+  {
+    "objectID": "presentations/numerici.html#e-se-il-campo-da-ottimizzare-non-è-analitico",
+    "href": "presentations/numerici.html#e-se-il-campo-da-ottimizzare-non-è-analitico",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "E se il campo da ottimizzare non è analitico?",
+    "text": "E se il campo da ottimizzare non è analitico?\n\n\nPer quanto visto precedentemente, in casi di applicazione industriale raramente si dispone di un modello analitico, ancor più raramente esso è differenziabile\nServono quindi metodi numerici gradient-less, cioè che non richiedono la conoscenza del gradiente per raggiungere il minimo\nSpesso, comunque, il minimo può essere locale e non si ha modo di verificarne l’unicità"
+  },
+  {
     "objectID": "presentations/numerici.html#nelder-mead",
     "href": "presentations/numerici.html#nelder-mead",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
@@ -298,13 +326,20 @@
     "href": "presentations/numerici.html#traiettoria-minimi-locali",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Traiettoria — Minimi locali",
-    "text": "Traiettoria — Minimi locali"
+    "text": "Traiettoria — Minimi locali\n\n\n\n\n\n\nNota\n\n\nLa posizione di partenza del simplesso può determinare il risultato finale, precipitando in minimi differenti"
   },
   {
-    "objectID": "presentations/numerici.html#traiettoria-minimi-locali-1",
-    "href": "presentations/numerici.html#traiettoria-minimi-locali-1",
+    "objectID": "presentations/numerici.html#cosa-ottimizziamo",
+    "href": "presentations/numerici.html#cosa-ottimizziamo",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
-    "section": "Traiettoria — Minimi locali",
-    "text": "Traiettoria — Minimi locali\n\n\n\n\n\n\nNota\n\n\nLa posizione di partenza del simplesso può determinare il risultato finale, precipitando in minimi differenti"
+    "section": "Cosa ottimizziamo?",
+    "text": "Cosa ottimizziamo?\nCioè, cosa rappresenta la funzione da minimizzare?\n\nÈ una mappa \\(\\mathbb{R}^n\\rightarrow \\mathbb{R}\\) che identifica un generico indice di prestazione (uno scalare) a partire da una combinazione di parametri (un vettore). Può essere (in ordine crescente di costo):\n\nuna funzione matematica, anche non analitica (con basi fisiche oppure empiriche)\nil risultato di un algoritmo computazionale, ad es. la valutazione di una variabile di stato in un modello FEM parametrico\nuna misura effettuata su un processo fisico, reale o in scala\n\n\n\n\n\n\n\n\nMa purtroppo…\n\n\nI processi produttivi spesso sono così complessi che la strada più costosa è anche l’unica percorribile"
+  },
+  {
+    "objectID": "presentations/numerici.html#nei-processi-produttivi",
+    "href": "presentations/numerici.html#nei-processi-produttivi",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Nei processi produttivi",
+    "text": "Nei processi produttivi\nIl modello del processo è in generale disponibile solo in forma numerica\n\nsi definisce un modello numerico parametrico:\n\nua simulazione FEA di dettaglio, in cui alcuni parametri geometrici o proprietà del materiale sono parametri\nun modello per il tempo di processo in funzione di parametri di taglio (es. mediante simulazione su CNC o su CAM)\n\nAd es. mediante NM: si definisce un simplesso iniziale: per ogni vertice si calcola la risposta valutando il modello simulativo, a cui segue la discesa del gradiente verso il minimo\n\n\n\n\n\n\n\nImportante\n\n\nL’ipotesi sottostante è che il modello computazionale sia disponibile e validato"
   }
 ]

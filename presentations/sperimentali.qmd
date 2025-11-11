@@ -13,7 +13,7 @@ format: revealjs
 ---
 
 
-## Contenuti del corso
+## Contenuti del corso {{< bi card-list >}}
 
 * Ottimizzazione: cosa significa?
 * Metodi analitici

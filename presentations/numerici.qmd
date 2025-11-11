@@ -20,10 +20,11 @@ knitr::opts_chunk$set(
 )
 library(tidyverse)
 library(neldermead)
+library(gganimate)
 ```
 
 
-## Contenuti
+## Contenuti {{< bi card-list >}}
 
 * Simulazione numerica: Analisi/Metodo agli Elementi Finiti (FEA/FEM)
 * Ottimizzazione numerica
@@ -180,24 +181,110 @@ Vedi ad es. la [Barra di Hopkinson](https://en.wikipedia.org/wiki/Split-Hopkinso
 
 # Ottimizzazione numerica
 
-
-## Nelder-Mead
+## Cosa significa
 
 :::columns
 :::column
-* Si definisce un **simplesso** un iper-poligono con N vertici su una superficie di risposta in uno spazio N-dimensionale
-* Il simplesso viene iterativamente trasformato **precipitando** nel minimo locale
+Se la funzione/campo da ottimizzare è **analitica**, è possibile usare:
 
-![Simplesso in 2-D: possibili trasformazioni](https://upload.wikimedia.org/wikipedia/commons/7/72/An-iteration-of-the-Nelder-Mead-method-over-two-dimensional-space-showing-point-p-min.png){width="80%"}
+* metodi analitici, quando è possibile calcolare gli zeri della derivata
+* metodi numerici derivativi, altrimenti
+
 :::
 
 :::column
-![Simplesso Nelder-Mead nella funzione di Rosenbrock](https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif)
+```{r}
+tibble(
+  x = seq(0, 12, length.out=100),
+  y = 10 - 10*x + x^2,
+  y1 = -10 + 2*x
+) %>% 
+  ggplot(aes(x=x)) + 
+  geom_line(aes(y=y)) +
+  geom_line(aes(y=y1), color="red") + 
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_vline(xintercept = 5, linetype=2) 
+```
 :::
 :::
 
+## Cosa significa
 
-## Traiettoria --- Minimi locali
+:::columns
+:::column
+Se la funzione/campo da ottimizzare è **analitica**, è possibile usare:
+
+* metodi analitici, quando è possibile calcolare gli zeri della derivata
+* metodi numerici derivativi, altrimenti
+
+:::
+
+:::column
+![Metodo di Newton-Raphson per gli zeri](https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif)
+:::
+:::
+
+## Newton-Raphson per minimizzazione
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+f  <- function(x) x^4 - 4*x^2 + x + 20
+df <- function(x) 4*x^3 - 8*x + 1
+ddf <- function(x) 12*x^2 - 8
+tgt <- function(x, px, py, b) py - b*px + b * x
+
+# Newton per il minimo: x_{n+1} = x - f'(x)/f''(x)
+newton_step <- function(x) x - df(x)/ddf(x)
+
+# Iterazioni
+x0 <- 3    # valore iniziale
+x_seq <- seq(-2, 3, length.out = 400)
+n_iter <- 6
+
+
+iter <- tibble(
+  iter = 1:n_iter,
+  x = accumulate(2:n_iter, ~ newton_step(.x), .init = x0),
+  y = f(x),
+  y1 = df(x),
+  y2 = ddf(x)
+)
+
+tangents <- tibble(x=x_seq)
+for (i in 1:n_iter) {
+  v <- iter[i, ]
+  tangents[paste0("it.", i)] <- tgt(tangents$x, v$x, v$y1, v$y2)
+}
+
+tangents <- tangents %>% 
+  pivot_longer(-x, names_to = "iter", values_to = "y") %>% 
+  mutate(iter = map_int(iter, ~ str_split(., "\\.")[[1]][2] %>% as.integer()))
+
+
+# Preparazione dati per il grafico
+curve_data <- tibble(
+  x = x_seq,
+  y = f(x),
+  y1 = df(x),
+  y2 = ddf(x)
+)
+
+curve_data %>% 
+  ggplot(aes(x=x)) + 
+  geom_hline(yintercept = 0) +
+  geom_line(aes(y=y), color="red") +
+  geom_line(aes(y=y1), linetype=2) +
+  geom_point(data=iter, aes(y=y), color="red") +
+  geom_point(data=iter, aes(y=y1)) +
+  geom_line(data=tangents, aes(x=x, y=y), linetype=3) +
+  scale_color_viridis_c() + 
+  facet_wrap(~iter, labeller = \(x) map(x, ~ paste("Iteration", .))) +
+  lims(y=c(-10, 90))
+```
+
+
+## E se il campo da ottimizzare non è analitico?
 
 ```{r}
 himmelblau <- function(x, y) (x^2+y-11)^2+(x+y^2-7)^2
@@ -217,7 +304,11 @@ p <- df %>%
 
 :::columns
 :::column
+Per quanto visto precedentemente, in casi di applicazione industriale raramente si dispone di un modello analitico, ancor più raramente esso è differenziabile
 
+Servono quindi **metodi numerici *gradient-less***, cioè che non richiedono la conoscenza del gradiente per raggiungere il minimo
+
+Spesso, comunque, il minimo può essere locale e non si ha modo di verificarne l'unicità
 :::
 
 :::column
@@ -226,6 +317,24 @@ p
 ```
 :::
 :::
+
+## Nelder-Mead
+
+:::columns
+:::column
+* Si definisce un **simplesso** un iper-poligono con N vertici su una superficie di risposta in uno spazio N-dimensionale
+* Il simplesso viene iterativamente trasformato **precipitando** nel minimo locale
+
+![Simplesso in 2-D: possibili trasformazioni](https://upload.wikimedia.org/wikipedia/commons/7/72/An-iteration-of-the-Nelder-Mead-method-over-two-dimensional-space-showing-point-p-min.png){width="80%"}
+:::
+
+:::column
+![Simplesso Nelder-Mead nella funzione di Rosenbrock](https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif)
+:::
+:::
+
+
+
 
 
 
@@ -269,15 +378,22 @@ df <- expand.grid(
 ) %>% 
   mutate( z = himmelblau(x, y)) 
 
-breaks <- c(0.1, 1, 5, 10, 50, 100, 500, 1000, 2000, 5000)
+breaks <- c(0.1, 1, 5, 10, 35, 70, 125, 250, 500, 1000, 2000, 5000)
 p1 <- df %>% 
   ggplot(aes(x=x, y=y)) + 
   geom_contour_filled(aes(z=z), breaks=breaks, show.legend = FALSE) +
   geom_contour(aes(z=z), breaks=breaks) +
+  geom_point(data=traj, color="red") + 
   geom_point(data=slice(traj, 1, n()), color="orange", shape=c(15, 16), size=3) +
   geom_path(data=traj, color="red") + 
+  geom_polygon(
+    data=nm$simplex0$x %>% as_tibble(), 
+    aes(x=V1, y=V2), 
+    fill=NA,
+    color="red") + 
   coord_equal()
 ```
+
 ```{r}
 nm2 <- neldermead()
 nm2 <- neldermead.set(nm2, 'numberofvariables', 2)
@@ -298,15 +414,21 @@ p2 <- df %>%
   ggplot(aes(x=x, y=y)) + 
   geom_contour_filled(aes(z=z), breaks=breaks, show.legend = FALSE) +
   geom_contour(aes(z=z), breaks=breaks) +
+  geom_point(data=traj, color="red") + 
   geom_point(data=slice(traj, 1, n()), color="orange", shape=c(15, 16), size=3) +
   geom_path(data=traj, color="red") + 
+  geom_polygon(
+    data=nm2$historysimplex[[1]]$x %>% as_tibble(), 
+    aes(x=V1, y=V2), 
+    fill=NA,
+    color="red") + 
   coord_equal()
 ```
 
 :::columns
 :::column
 ```{r}
-p1
+p1 
 ```
 :::
 
@@ -317,6 +439,57 @@ p2
 :::
 :::
 
+
+# Particle swarm
+
+:::columns
+:::column
+Se il processo/fenomeno può mostrare molti **minimi locali** esistono metodi globali (più costosi). Un esempio è lo sciame di particelle
+
+* si inizializza una griglia di particelle in un dominio
+* ogni particella ha un vettore velocità inizialmente convergente al centro
+* ad ogni passo si valuta la funzione e si corregge la velocità in proporzione alla riduzione della funzione
+* si definisce un **criterio di convergenza**
+
+:::
+
+:::column
+![Metodo Particle swarm in 2-D](https://upload.wikimedia.org/wikipedia/commons/e/ec/ParticleSwarmArrowsAnimation.gif)
+:::
+:::
+
+:::callout-note
+Il metodo può essere combinato con altri metodi a ricerca locale (es. Nelder-Mead)
+:::
+
+
+## Cosa ottimizziamo?
+
+Cioè, cosa rappresenta la **funzione da minimizzare**?
+
+* È una **mappa** $\mathbb{R}^n\rightarrow \mathbb{R}$ che identifica un generico **indice di prestazione** (uno scalare) a partire da una combinazione di parametri (un vettore). Può essere (in ordine crescente di costo):
+   - una funzione matematica, anche non analitica (con basi fisiche oppure empiriche)
+   - il risultato di un algoritmo computazionale, ad es. la valutazione di una variabile di stato in un modello FEM parametrico
+   - una misura effettuata su un processo fisico, reale o in scala
+
+:::callout-warning
+## Ma purtroppo...
+I processi produttivi spesso sono così complessi che la strada più costosa è anche l'unica percorribile
+:::
+
+
+## Nei processi produttivi
+
+Il modello del processo è in generale disponibile **solo in forma numerica**
+
+* si definisce un modello numerico **parametrico**:
+  - ua simulazione FEA di dettaglio, in cui alcuni parametri geometrici o proprietà del materiale sono **parametri**
+  - un modello per il tempo di processo in funzione di parametri di taglio (es. mediante simulazione su CNC o su CAM)
+* Ad es. mediante NM: si definisce un simplesso iniziale: per ogni **vertice** si calcola la **risposta** valutando il modello simulativo, a cui segue la discesa del gradiente verso il minimo
+
+:::callout-important
+L'ipotesi sottostante è che il modello computazionale sia disponibile e **validato**
+:::
 
 
 

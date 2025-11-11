@@ -1,35 +1,22 @@
 ---
-subtitle: Multi-Agent Distributed System
+title: Ottimizzazione dei processi produttivi
+subtitle: Corso di perfezionamento
 format: html
 about:
   template: trestles
-  image: images/logo.png
   links:
     - icon: github
       text: GitHub
-      href: https://github.com/MADS-Net
+      href: https://github.com/OptPar
     - text: "![](https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png)"
       href: https://creativecommons.org/licenses/by-sa/4.0/
 ---
 
-# Authors
+# Autore
 
-Main author
+**Paolo Bosetti**, Università di Trento
 
-:   Paolo Bosetti, University or Trento
+# Date
 
-Contributors
+Novembre 2025
 
-:   Anna-Carla Araujo, INSA Toulouse
-
-    Guillaume Cohen, INSA Toulouse
-
-Beta-testers
-
-:   Matteo Lancini, University of Brescia
-
-    Marco Ghidelli, University of Brescia
-
-    Nicola Abeni, University of Bresicia
-
-    Federico Paolucci, University of Perugia

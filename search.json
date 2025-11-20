@@ -32,7 +32,7 @@
     "href": "presentations/analitici.html#taglio-ortogonale-definizione",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Taglio ortogonale — definizione",
-    "text": "Taglio ortogonale — definizione\n\n\nLa formazione di truciolo è un processo inerentemente tridimensionale\n\nper la geometria del processo\nper lo stato di sforzo e deformazione\n\nLa più importante semplificazione è considerare:\n\nun processo piano (quasi 2-D)\nstato di deformazione piana\nutensile con tagliente vivo\n\n\n\n\nGeoGebra"
+    "text": "Taglio ortogonale — definizione\n\n\nLa formazione di truciolo è un processo inerentemente tridimensionale\n\nper la geometria del processo\nper lo stato di sforzo e deformazione\n\nLa più importante semplificazione è considerare:\n\nun processo piano (quasi 2-D)\nstato di deformazione piana\nutensile con tagliente vivo\n\n\n\n\n\nGeoGebra"
   },
   {
     "objectID": "presentations/analitici.html#taglio-ortogonale-definizione-1",
@@ -74,7 +74,7 @@
     "href": "presentations/analitici.html#forze-e-deformazioni-3",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Forze e deformazioni",
-    "text": "Forze e deformazioni\n\n\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& R \\cos(\\varphi+\\beta-\\alpha)\\\\\nF_n &=& R\\sin(\\varphi+\\beta-\\alpha)\n\\end{array}\n\\right.\n\\]\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& F_c\\cos \\varphi - F_t\\sin\\varphi\\\\\nF_n &=& F_c\\sin \\varphi + F_t\\cos\\varphi\n\\end{array}\n\\right.\n\\] \\[\n\\left\\{\n\\begin{array}{lcl}\nF &=& F_c\\sin \\alpha + F_t\\cos\\alpha\\\\\nN &=& F_c\\cos \\alpha - F_t\\sin\\alpha\n\\end{array}\n\\right.\n\\] \\[\n\\mu = \\tan\\beta = F/N = -\\frac{F_t + F_c\\tan\\alpha}{F_c - F_t\\tan\\alpha}\n\\]\n\\[\nF_t = F_c\\tan(\\beta-\\alpha)\n\\]\n\n\n\nGeoGebra"
+    "text": "Forze e deformazioni\n\n\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& R \\cos(\\varphi+\\beta-\\alpha)\\\\\nF_n &=& R\\sin(\\varphi+\\beta-\\alpha)\n\\end{array}\n\\right.\n\\]\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& F_c\\cos \\varphi - F_t\\sin\\varphi\\\\\nF_n &=& F_c\\sin \\varphi + F_t\\cos\\varphi\n\\end{array}\n\\right.\n\\] \\[\n\\left\\{\n\\begin{array}{lcl}\nF &=& F_c\\sin \\alpha + F_t\\cos\\alpha\\\\\nN &=& F_c\\cos \\alpha - F_t\\sin\\alpha\n\\end{array}\n\\right.\n\\] \\[\n\\mu = \\tan\\beta = F/N = -\\frac{F_t + F_c\\tan\\alpha}{F_c - F_t\\tan\\alpha}\n\\]\n\\[\nF_t = F_c\\tan(\\beta-\\alpha)\n\\]\n\n\n\n\nGeoGebra"
   },
   {
     "objectID": "presentations/analitici.html#modello-di-merchant",

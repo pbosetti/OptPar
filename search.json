@@ -32,7 +32,7 @@
     "href": "presentations/analitici.html#taglio-ortogonale-definizione",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Taglio ortogonale — definizione",
-    "text": "Taglio ortogonale — definizione\n\n\nLa formazione di truciolo è un processo inerentemente tridimensionale\n\nper la geometria del processo\nper lo stato di sforzo e deformazione\n\nLa più importante semplificazione è considerare:\n\nun processo piano (quasi 2-D)\nstato di deformazione piana\nutensile con tagliente vivo"
+    "text": "Taglio ortogonale — definizione\n\n\nLa formazione di truciolo è un processo inerentemente tridimensionale\n\nper la geometria del processo\nper lo stato di sforzo e deformazione\n\nLa più importante semplificazione è considerare:\n\nun processo piano (quasi 2-D)\nstato di deformazione piana\nutensile con tagliente vivo\n\n\n\n\nGeoGebra"
   },
   {
     "objectID": "presentations/analitici.html#taglio-ortogonale-definizione-1",
@@ -46,7 +46,7 @@
     "href": "presentations/analitici.html#angoli",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Angoli",
-    "text": "Angoli\n\n\n\\[\\begin{align}\nR &= t_0/t_c \\\\\nr &= \\frac{l_s\\sin\\varphi}{l_s\\cos(\\varphi-\\alpha)} \\\\\n&= \\frac{\\sin\\varphi}{\\cos(\\varphi-\\alpha)} \\\\\n\\tan\\varphi &= \\frac{r \\cos\\alpha}{1 - r \\sin\\alpha}\n\\end{align}\\]\n\n\n\n\nTaglio ortogonale\n\n\n\n\n\n\n\n\n\nCioè:\n\n\ndalla misura dello spessore del truciolo si può risalire alla misura dell’angolo del piano di taglio \\(\\varphi\\)"
+    "text": "Angoli\n\n\n\\[\\begin{align}\nr &= t_0/t_c \\\\\nr &= \\frac{l_s\\sin\\varphi}{l_s\\cos(\\varphi-\\alpha)} \\\\\n&= \\frac{\\sin\\varphi}{\\cos(\\varphi-\\alpha)} \\\\\n\\tan\\varphi &= \\frac{r \\cos\\alpha}{1 - r \\sin\\alpha}\n\\end{align}\\]\n\n\n\n\nTaglio ortogonale\n\n\n\n\n\n\n\n\n\nCioè:\n\n\ndalla misura dello spessore del truciolo si può risalire alla misura dell’angolo del piano di taglio \\(\\varphi\\)"
   },
   {
     "objectID": "presentations/analitici.html#forze-e-deformazioni",
@@ -60,7 +60,7 @@
     "href": "presentations/analitici.html#forze-e-deformazioni-1",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Forze e deformazioni",
-    "text": "Forze e deformazioni\n\n\n\\[\\begin{align}\n\\gamma &= \\frac{AB}{CO} = \\frac{AO + OB}{CO} \\\\\n&= \\frac{AO}{CO} + \\frac{OB}{CO}\\\\\n\\gamma &= \\cot(\\varphi) + \\tan(\\varphi - \\alpha)\n\\end{align}\\]\n\n\n\nIn altre parole: dagli angoli di spoglia e del piano di taglio è possibile calcolare la deformazione di taglio"
+    "text": "Forze e deformazioni\n\n\n\\[\\begin{align}\n\\gamma &= \\frac{AC}{BD} = \\frac{AD + DC}{BD} \\\\\n&= \\frac{AD}{BD} + \\frac{DC}{BD}\\\\\n\\gamma &= \\cot(\\varphi) + \\tan(\\varphi - \\alpha)\n\\end{align}\\]\n\n\n\nIn altre parole: dagli angoli di spoglia e del piano di taglio è possibile calcolare la deformazione di taglio"
   },
   {
     "objectID": "presentations/analitici.html#forze-e-deformazioni-2",
@@ -74,14 +74,14 @@
     "href": "presentations/analitici.html#forze-e-deformazioni-3",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Forze e deformazioni",
-    "text": "Forze e deformazioni\n\n\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& R \\cos(\\varphi+\\beta-\\alpha)\\\\\nF_n &=& R\\sin(\\varphi+\\beta-\\alpha)\n\\end{array}\n\\right.\n\\]\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& F_c\\cos \\varphi - F_t\\sin\\varphi\\\\\nF_n &=& F_c\\sin \\varphi + F_t\\cos\\varphi\n\\end{array}\n\\right.\n\\] \\[\n\\left\\{\n\\begin{array}{lcl}\nF &=& F_c\\sin \\alpha + F_t\\cos\\alpha\\\\\nN &=& F_c\\cos \\alpha - F_t\\sin\\alpha\n\\end{array}\n\\right.\n\\] \\[\n\\mu = \\tan\\beta = F/N = -\\frac{F_t + F_c\\tan\\alpha}{F_c - F_t\\tan\\alpha}\n\\]\n\\[\nF_t = F_c\\tan(\\beta-\\alpha)\n\\]"
+    "text": "Forze e deformazioni\n\n\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& R \\cos(\\varphi+\\beta-\\alpha)\\\\\nF_n &=& R\\sin(\\varphi+\\beta-\\alpha)\n\\end{array}\n\\right.\n\\]\n\\[\n\\left\\{\n\\begin{array}{lcl}\nF_s &=& F_c\\cos \\varphi - F_t\\sin\\varphi\\\\\nF_n &=& F_c\\sin \\varphi + F_t\\cos\\varphi\n\\end{array}\n\\right.\n\\] \\[\n\\left\\{\n\\begin{array}{lcl}\nF &=& F_c\\sin \\alpha + F_t\\cos\\alpha\\\\\nN &=& F_c\\cos \\alpha - F_t\\sin\\alpha\n\\end{array}\n\\right.\n\\] \\[\n\\mu = \\tan\\beta = F/N = -\\frac{F_t + F_c\\tan\\alpha}{F_c - F_t\\tan\\alpha}\n\\]\n\\[\nF_t = F_c\\tan(\\beta-\\alpha)\n\\]\n\n\n\nGeoGebra"
   },
   {
     "objectID": "presentations/analitici.html#modello-di-merchant",
     "href": "presentations/analitici.html#modello-di-merchant",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Modello di Merchant",
-    "text": "Modello di Merchant\n\n\nIl piano di scorrimento è quello che minimizza lo sforzo di taglio \\(\\tau\\): \\[\n\\tau=\\frac{F_s}{A_s}=R\\cos(\\varphi+\\beta-\\alpha)\\frac{\\sin \\varphi}{t_0w}\n\\] \\[\n\\frac{d}{d\\phi}\\cos(\\phi+\\beta-\\alpha)\\sin\\phi = 0\n\\] Risulta:\n\\[\n\\varphi = \\pi/4+\\frac{\\alpha-\\beta}{2}\n\\]\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\nPer ora nulla ci consente di stimare la magnitudine di \\(R\\) e la sua relazione con \\(\\alpha\\) e \\(\\beta\\)!"
+    "text": "Modello di Merchant\n\n\nIl piano di scorrimento è quello che minimizza lo sforzo di taglio \\(\\tau\\): \\[\n\\tau=\\frac{F_s}{A_s}=R\\cos(\\varphi+\\beta-\\alpha)\\frac{\\sin \\varphi}{t_0w}\n\\] \\[\n\\frac{d}{d\\phi}\\cos(\\phi+\\beta-\\alpha)\\sin\\phi = 0\n\\] Risulta:\n\\[\n\\varphi = \\pi/4+\\frac{\\alpha-\\beta}{2}\n\\]\n\n\n\n\n\n\nImportante\n\n\nPer ora nulla ci consente di stimare la magnitudine di \\(R\\) e la sua relazione con \\(\\alpha\\) e \\(\\beta\\)!\n\n\n\n\n\n\n\nGeoGebra"
   },
   {
     "objectID": "presentations/analitici.html#energia-specifica",

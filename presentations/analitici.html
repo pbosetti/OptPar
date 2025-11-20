@@ -6,9 +6,9 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/bootstrap-icons-1.13.1/bootstrap-icons.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.30">
+  <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Ottimizzazione dei parametri di un processo manifatturiero</title>
@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ae24b9acd77f9cc9397af828aafb10b0.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0f2f6c2e84e01ec4900cb03678e5c9c9.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -246,8 +246,9 @@ Paolo Bosetti
 <li>utensile con tagliente vivo</li>
 </ul>
 </div><div class="column">
-<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/jvnbyrhg/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/jvnbyrhg/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black; margin-bottom: -20px;">
 </iframe>
+<p><a href="https://www.geogebra.org/m/jvnbyrhg" target="geogebra">GeoGebra</a></p>
 </div></div>
 </section>
 <section id="taglio-ortogonale-definizione-1" class="slide level2">
@@ -275,7 +276,7 @@ Paolo Bosetti
 <div class="columns">
 <div class="column">
 <p><span class="math display">\[\begin{align}
-R &amp;= t_0/t_c \\
+r &amp;= t_0/t_c \\
 r &amp;= \frac{l_s\sin\varphi}{l_s\cos(\varphi-\alpha)} \\
 &amp;= \frac{\sin\varphi}{\cos(\varphi-\alpha)} \\
 \tan\varphi &amp;= \frac{r \cos\alpha}{1 - r \sin\alpha}
@@ -318,8 +319,8 @@ r &amp;= \frac{l_s\sin\varphi}{l_s\cos(\varphi-\alpha)} \\
 <div class="columns">
 <div class="column">
 <p><span class="math display">\[\begin{align}
-\gamma &amp;= \frac{AB}{CO} = \frac{AO + OB}{CO} \\
-&amp;= \frac{AO}{CO} + \frac{OB}{CO}\\
+\gamma &amp;= \frac{AC}{BD} = \frac{AD + DC}{BD} \\
+&amp;= \frac{AD}{BD} + \frac{DC}{BD}\\
 \gamma &amp;= \cot(\varphi) + \tan(\varphi - \alpha)
 \end{align}\]</span></p>
 </div><div class="column" style="text-align: center;">
@@ -394,8 +395,9 @@ N &amp;=&amp; F_c\cos \alpha - F_t\sin\alpha
 F_t = F_c\tan(\beta-\alpha)
 \]</span></p>
 </div><div class="column">
-<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/twsxsapp/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/twsxsapp/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black; margin-bottom: -20px;">
 </iframe>
+<p><a href="https://www.geogebra.org/m/ybk2qufn" target="geogebra">GeoGebra</a></p>
 </div></div>
 </section>
 <section id="modello-di-merchant" class="slide level2">
@@ -410,10 +412,6 @@ F_t = F_c\tan(\beta-\alpha)
 <p><span class="math display">\[
 \varphi = \pi/4+\frac{\alpha-\beta}{2}
 \]</span></p>
-</div><div class="column">
-<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/vhkbkcxf/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black;">
-</iframe>
-</div></div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -427,6 +425,13 @@ F_t = F_c\tan(\beta-\alpha)
 </div>
 </div>
 </div>
+</div><div class="column">
+<iframe scrolling="no" title="taglio ortogonale" src="https://www.geogebra.org/material/iframe/id/vhkbkcxf/width/600/height/500/border/ffffff/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="600px" height="500px" style="border:1px solid black; margin-bottom: -20px;">
+</iframe>
+<div class="center">
+<p><a href="https://www.geogebra.org/m/vhkbkcxf" target="geogebra">GeoGebra</a></p>
+</div>
+</div></div>
 </section>
 <section id="energia-specifica" class="slide level2">
 <h2>Energia specifica</h2>
@@ -886,7 +891,7 @@ T_{0,t} &amp;= (1/n -1)T_c
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -998,13 +1003,14 @@ T_{0,t} &amp;= (1/n -1)T_c
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

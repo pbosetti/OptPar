@@ -353,21 +353,254 @@ Paolo Bosetti
 </div>
 </div></div>
 </section></section>
+<section>
 <section id="modelli-lineari" class="title-slide slide level1 center">
 <h1>Modelli lineari</h1>
 <p>Come approssimare un fenomeno con una relazione empirica</p>
 </section>
-
+<section id="modello-lineare-semplice" class="slide level2">
+<h2>Modello lineare semplice</h2>
+<p>Il modello lineare più semplice immaginabile + <span class="math inline">\(y=a + bx\)</span>, ma attenzione alle <strong>definizioni</strong></p>
+<ul>
+<li><strong>lineare</strong> significa che la relazione è una combinazione lineare <strong>dei coefficienti</strong></li>
+<li><strong>combinazione lineare</strong> significa una somma di termini moltiplicati ciascuno per un fattore (cioè un polinomio)</li>
+</ul>
+<p>Secondo queste definizioni, anche <span class="math inline">\(y=a + bx + cx^2\)</span> è un modello lineare nei coefficienti <span class="math inline">\(a, b, c\)</span>, così come lo è qualsiasi polinomio in <span class="math inline">\(x\)</span> di grado <span class="math inline">\(k\)</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>I modelli lineari sono particolarmente utili perché semplici da trattare, pur essendo adatti a rappresentare un’ampia gamma di fenomeni</li>
+<li>In generale, per un modello di grado <span class="math inline">\(k\)</span> servono almeno <span class="math inline">\(k+1\)</span> <strong>livelli</strong> della variabile indipendente <span class="math inline">\(x\)</span> (chiamati <strong>trattamenti</strong>)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="modelli-lineari-in-n-dimensioni" class="slide level2">
+<h2>Modelli lineari in <span class="math inline">\(n\)</span> dimensioni</h2>
+<p>Quando la relazione tra ingressi ed resa diventa più complessa, <span class="math inline">\(y=f(x_1, x_2, \dots, x_n)\)</span> è comunque possibile definire dei modelli lineari</p>
+<p>Ad esempio, per <span class="math inline">\(n=2\)</span> e fermandosi al primo grado:</p>
+<p><span class="math display">\[
+y=c_{0,0} + c_{1,0}x_1 + c_{0,1}x_2 + c_{1,1}x_1x_2
+\]</span></p>
+<p>Così, per un secondo grado:</p>
+<p><span class="math display">\[\begin{align}
+y&amp; =c_{0,0} + c_{1,0}x_1 + c_{0,1}x_2 + c_{1,1}x_1x_2 \\
+&amp; + c_{2,0}x_1^2 + c_{0,2}x_2^2 + c_{2,1}x_1^2x_2 + c_{1,2}x_1x_2^2 \\
+&amp; + c_{2,2}x_1^2x_2^2
+\end{align}\]</span></p>
+<p>e così via</p>
+</section>
+<section id="quanti-punti-o-trattamenti-servono" class="slide level2">
+<h2>Quanti punti (o trattamenti) servono?</h2>
+<p>Per un modello lineare di grado <span class="math inline">\(k\)</span> in tutte le variabili <span class="math inline">\(x_1,x_2,\dots,x_k\)</span> servono almeno <span class="math inline">\(k+1\)</span> punti per ogni variabile</p>
+<p>Quindi, se il processo dipende da <span class="math inline">\(n\)</span> variabili serve una <strong>griglia</strong> <span class="math inline">\(n\)</span>-dimensionale di <span class="math inline">\((k+1)^n\)</span> trattamenti differenti</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Si tratta di numeri che crescono <strong>molto velocemente</strong>. Ad esempio, una relazione di secondo grado in sei fattori richiede almeno 729 trattamenti; se i fattori salgono a otto servono 6561 trattamenti, e così via</p>
+<p>Ovviamente, i <strong>costi sperimentali</strong> variano con il numero di esperimenti/trattamenti</p>
+</div>
+</div>
+</div>
+</section>
+<section id="come-si-identificano-i-coefficienti-del-modello" class="slide level2">
+<h2>Come si identificano i coefficienti del modello?</h2>
+<p>La procedura matematica con cui si calcolano i coefficienti del modello <span class="math inline">\(c_{i,j}\)</span> si chiama <strong>regressione lineare</strong></p>
+<p>Ci sono diverse tecniche numeriche per eseguirla: in generale si tratta sempre di identificare l’insieme di <span class="math inline">\(c_{i,j}\)</span> che <strong>minimizza i residui</strong> del modello</p>
+<p>I <strong>residui del modello</strong> sono le differenze tra le singole misure e i valori predetti dal modello <span class="math inline">\(y=f(x_1,x_2,\dots,x_n)\)</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Regredire un modello</strong> significa quindi adattare i suoi coefficienti finché esso passa mediamente più vicino possibile ai punti sperimentali</p>
+<p>È quindi a sua volta una <strong>procedura di ottimizzazione</strong>, che minimizza i residui agendo sui coefficienti del modello</p>
+<p>La procedura di ottimizzazione è in generale condotta mediante appositi software</p>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="design-of-experiments" class="title-slide slide level1 center">
 <h1><em>Design of Experiments</em></h1>
-
+<p>Cioè, <strong>progettare</strong> gli esperimenti in modo da massimizzarne l’efficienza</p>
 </section>
 <section id="i-piani-fattoriali" class="slide level2">
 <h2>I piani fattoriali</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Due fattori, <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span></li>
+<li>Indaghiamo 2 livelli per ogni fattore indicato come <span class="math inline">\(X-\)</span> e <span class="math inline">\(X+\)</span></li>
+<li>Cambiamo <strong>un livello alla volta</strong></li>
+<li>Valutiamo ogni trattamento <strong>1 sola volta</strong></li>
+<li>Valutiamo gli <strong>effetti</strong> di <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>: <span class="math display">\[
+\begin{align}
+A &amp;= 50 - 20 = 30\\
+B &amp;= 30 - 20 = 10
+\end{align}
+\]</span></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="notazione-di-yates" class="slide level2">
+<h2>Notazione di Yates</h2>
+<p>Quando i livelli di tutti i fattori sono solo due, si può usare l’<strong>ordine di Yates</strong> per indicare le combinazioni di livelli:</p>
+<ul>
+<li>Fattori ed effetti dei fattori si indicano con lettere maiuscole</li>
+<li>I trattamenti si indicano con combinazioni di lettere minuscole
+<ul>
+<li>lettera presente significa fattore a livello alto</li>
+<li>lettera assente significa fattore a livello basso</li>
+<li>se tutte le lettere sono assenti si scrive <span class="math inline">\((1)\)</span></li>
+</ul></li>
+</ul>
+
+<aside><div>
+<p>Nell’esempio alla slide precedente, i trattamenti sono <span class="math inline">\((1), a, b\)</span></p>
+</div></aside></section>
+<section id="piano-fattoriale" class="slide level2">
+<h2>Piano fattoriale</h2>
+<div class="columns">
+<div class="column">
+<p>Modificando un fattore alla volta non si individuano le <strong>interazioni</strong></p>
+<p>Si ha interazione quando l’<strong>effetto</strong> di un fattore dipende dal <strong>livello</strong> di un altro fattore</p>
+<p>In questo secondo esempio misuriamo la risposta dei trattamenti <span class="math inline">\((1), a, b, ab\)</span></p>
+<p>Possiamo stimare sia gli effetti di <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> che l’<strong>interazione</strong> <span class="math inline">\(AB\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+A &amp;= \frac{a+ab}{2} - \frac{(1) + b}{2} = 6\\
+B &amp;= \frac{b+ab}{2} - \frac{(1) + a}{2} = -14 \\
+AB &amp;= \frac{a+b}{2} - \frac{(1)+ab}{2} = -24
+\end{align}
+\]</span></p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-8-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="grafico-di-interazione" class="slide level2">
+<h2>Grafico di interazione</h2>
+<div class="columns">
+<div class="column">
+<p>Il concetto di interazione è ben illustrato dai <strong>grafici di interazione</strong></p>
+<ul>
+<li>Se i due segmenti sono <strong>paralleli</strong> non c’è interazione</li>
+<li>Se i due segmenti sono <strong>incrociati</strong> o convergenti c’è interazione</li>
+<li>È <strong>indifferente</strong> quale fattore è in ascissa e quale in serie</li>
+</ul>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Resa vs.&nbsp;A</a></li><li><a href="#tabset-1-2">Resa vs.&nbsp;B</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-9-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-10-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="superficie-di-risposta-1" class="slide level2">
+<h2>Superficie di risposta</h2>
+<div class="columns">
+<div class="column">
+<p>I grafici di interazione non sono altro che <strong>proiezioni</strong> sull’asse di uno dei due fattori della <strong>superficie di risposta</strong></p>
+<p>Si usano generalmente <strong>unità codificate</strong>, riscalando l’intervallo di ciascun fattore sull’intervallo <span class="math inline">\([-1,1]\)</span></p>
+<p>In questo modo si ha la stessa sensibilità indipendentemente dall’intervallo della scala originale</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-11-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>NOTA</strong>: né la superficie di risposta né i grafici di interazione dànno alcuna informazione sulla <strong>significatività statistica</strong> degli effetti</p>
+</div>
+</div>
+</div>
+</section>
+<section id="risorse-online" class="slide level2">
+<h2>Risorse online</h2>
+<p>Livello base, utilizzando Excel per trattare i dati:</p>
+<ul>
+<li><a href="https://asq.org/quality-resources/quality-tools" target="asq">Quality Tools</a>, by <em>American Society for Quality</em></li>
+<li><a href="https://asq.org/-/media/public/sixsigma/tools-exchange/3-factor-doe-template.xls" target="asq">DoE Excel template</a>, by <em>American Society for Quality</em></li>
+</ul>
+<p>Livello evoluto (richiede programmazione)</p>
+<ul>
+<li><a href="https://r-project.org" target="R">Linguaggio R</a></li>
+<li><a href="https://cran.r-project.org/web/packages/adas.utils/vignettes/adas.utils.html" target="R">Libreria R <code>adas.utils</code></a></li>
+</ul>
 </section>
 <section id="lanalisi-della-varianza" class="slide level2">
-<h2>L’analisi della Varianza</h2>
+<h2>L’analisi della varianza</h2>
 
 
 </section></section>

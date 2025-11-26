@@ -252,18 +252,81 @@
     "text": "Come si calcola una superficie di risposta?\n\n\nÈ l’analogo multi-dimensionale di una relazione \\(y=f(x)\\), ma:\n\npiù cresce il numero di parametri più è difficile visualizzarla\npiù cresce il numero di parametri più è costoso realizzarla\n\nCi serve:\n\nsapere come costruire un modello\nsapere come organizzare le combinazioni di parametri minimizzandone il numero"
   },
   {
+    "objectID": "presentations/sperimentali.html#modello-lineare-semplice",
+    "href": "presentations/sperimentali.html#modello-lineare-semplice",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Modello lineare semplice",
+    "text": "Modello lineare semplice\nIl modello lineare più semplice immaginabile + \\(y=a + bx\\), ma attenzione alle definizioni\n\nlineare significa che la relazione è una combinazione lineare dei coefficienti\ncombinazione lineare significa una somma di termini moltiplicati ciascuno per un fattore (cioè un polinomio)\n\nSecondo queste definizioni, anche \\(y=a + bx + cx^2\\) è un modello lineare nei coefficienti \\(a, b, c\\), così come lo è qualsiasi polinomio in \\(x\\) di grado \\(k\\)\n\n\n\n\n\n\nNote\n\n\n\nI modelli lineari sono particolarmente utili perché semplici da trattare, pur essendo adatti a rappresentare un’ampia gamma di fenomeni\nIn generale, per un modello di grado \\(k\\) servono almeno \\(k+1\\) livelli della variabile indipendente \\(x\\) (chiamati trattamenti)"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#modelli-lineari-in-n-dimensioni",
+    "href": "presentations/sperimentali.html#modelli-lineari-in-n-dimensioni",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Modelli lineari in \\(n\\) dimensioni",
+    "text": "Modelli lineari in \\(n\\) dimensioni\nQuando la relazione tra ingressi ed resa diventa più complessa, \\(y=f(x_1, x_2, \\dots, x_n)\\) è comunque possibile definire dei modelli lineari\nAd esempio, per \\(n=2\\) e fermandosi al primo grado:\n\\[\ny=c_{0,0} + c_{1,0}x_1 + c_{0,1}x_2 + c_{1,1}x_1x_2\n\\]\nCosì, per un secondo grado:\n\\[\\begin{align}\ny& =c_{0,0} + c_{1,0}x_1 + c_{0,1}x_2 + c_{1,1}x_1x_2 \\\\\n& + c_{2,0}x_1^2 + c_{0,2}x_2^2 + c_{2,1}x_1^2x_2 + c_{1,2}x_1x_2^2 \\\\\n& + c_{2,2}x_1^2x_2^2\n\\end{align}\\]\ne così via"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#quanti-punti-o-trattamenti-servono",
+    "href": "presentations/sperimentali.html#quanti-punti-o-trattamenti-servono",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Quanti punti (o trattamenti) servono?",
+    "text": "Quanti punti (o trattamenti) servono?\nPer un modello lineare di grado \\(k\\) in tutte le variabili \\(x_1,x_2,\\dots,x_k\\) servono almeno \\(k+1\\) punti per ogni variabile\nQuindi, se il processo dipende da \\(n\\) variabili serve una griglia \\(n\\)-dimensionale di \\((k+1)^n\\) trattamenti differenti\n\n\n\n\n\n\nImportante\n\n\nSi tratta di numeri che crescono molto velocemente. Ad esempio, una relazione di secondo grado in sei fattori richiede almeno 729 trattamenti; se i fattori salgono a otto servono 6561 trattamenti, e così via\nOvviamente, i costi sperimentali variano con il numero di esperimenti/trattamenti"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#come-si-identificano-i-coefficienti-del-modello",
+    "href": "presentations/sperimentali.html#come-si-identificano-i-coefficienti-del-modello",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Come si identificano i coefficienti del modello?",
+    "text": "Come si identificano i coefficienti del modello?\nLa procedura matematica con cui si calcolano i coefficienti del modello \\(c_{i,j}\\) si chiama regressione lineare\nCi sono diverse tecniche numeriche per eseguirla: in generale si tratta sempre di identificare l’insieme di \\(c_{i,j}\\) che minimizza i residui del modello\nI residui del modello sono le differenze tra le singole misure e i valori predetti dal modello \\(y=f(x_1,x_2,\\dots,x_n)\\)\n\n\n\n\n\n\nNota\n\n\nRegredire un modello significa quindi adattare i suoi coefficienti finché esso passa mediamente più vicino possibile ai punti sperimentali\nÈ quindi a sua volta una procedura di ottimizzazione, che minimizza i residui agendo sui coefficienti del modello\nLa procedura di ottimizzazione è in generale condotta mediante appositi software"
+  },
+  {
     "objectID": "presentations/sperimentali.html#i-piani-fattoriali",
     "href": "presentations/sperimentali.html#i-piani-fattoriali",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "I piani fattoriali",
-    "text": "I piani fattoriali"
+    "text": "I piani fattoriali\n\n\n\nDue fattori, \\(A\\) e \\(B\\)\nIndaghiamo 2 livelli per ogni fattore indicato come \\(X-\\) e \\(X+\\)\nCambiamo un livello alla volta\nValutiamo ogni trattamento 1 sola volta\nValutiamo gli effetti di \\(A\\) e \\(B\\): \\[\n\\begin{align}\nA &= 50 - 20 = 30\\\\\nB &= 30 - 20 = 10\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#notazione-di-yates",
+    "href": "presentations/sperimentali.html#notazione-di-yates",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Notazione di Yates",
+    "text": "Notazione di Yates\nQuando i livelli di tutti i fattori sono solo due, si può usare l’ordine di Yates per indicare le combinazioni di livelli:\n\nFattori ed effetti dei fattori si indicano con lettere maiuscole\nI trattamenti si indicano con combinazioni di lettere minuscole\n\nlettera presente significa fattore a livello alto\nlettera assente significa fattore a livello basso\nse tutte le lettere sono assenti si scrive \\((1)\\)\n\n\n\n\nNell’esempio alla slide precedente, i trattamenti sono \\((1), a, b\\)"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#piano-fattoriale",
+    "href": "presentations/sperimentali.html#piano-fattoriale",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Piano fattoriale",
+    "text": "Piano fattoriale\n\n\nModificando un fattore alla volta non si individuano le interazioni\nSi ha interazione quando l’effetto di un fattore dipende dal livello di un altro fattore\nIn questo secondo esempio misuriamo la risposta dei trattamenti \\((1), a, b, ab\\)\nPossiamo stimare sia gli effetti di \\(A\\) e \\(B\\) che l’interazione \\(AB\\):\n\\[\n\\begin{align}\nA &= \\frac{a+ab}{2} - \\frac{(1) + b}{2} = 6\\\\\nB &= \\frac{b+ab}{2} - \\frac{(1) + a}{2} = -14 \\\\\nAB &= \\frac{a+b}{2} - \\frac{(1)+ab}{2} = -24\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#grafico-di-interazione",
+    "href": "presentations/sperimentali.html#grafico-di-interazione",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Grafico di interazione",
+    "text": "Grafico di interazione\n\n\nIl concetto di interazione è ben illustrato dai grafici di interazione\n\nSe i due segmenti sono paralleli non c’è interazione\nSe i due segmenti sono incrociati o convergenti c’è interazione\nÈ indifferente quale fattore è in ascissa e quale in serie\n\n\n\nResa vs. AResa vs. B"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#superficie-di-risposta-1",
+    "href": "presentations/sperimentali.html#superficie-di-risposta-1",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Superficie di risposta",
+    "text": "Superficie di risposta\n\n\nI grafici di interazione non sono altro che proiezioni sull’asse di uno dei due fattori della superficie di risposta\nSi usano generalmente unità codificate, riscalando l’intervallo di ciascun fattore sull’intervallo \\([-1,1]\\)\nIn questo modo si ha la stessa sensibilità indipendentemente dall’intervallo della scala originale\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\nNOTA: né la superficie di risposta né i grafici di interazione dànno alcuna informazione sulla significatività statistica degli effetti"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#risorse-online",
+    "href": "presentations/sperimentali.html#risorse-online",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Risorse online",
+    "text": "Risorse online\nLivello base, utilizzando Excel per trattare i dati:\n\nQuality Tools, by American Society for Quality\nDoE Excel template, by American Society for Quality\n\nLivello evoluto (richiede programmazione)\n\nLinguaggio R\nLibreria R adas.utils"
   },
   {
     "objectID": "presentations/sperimentali.html#lanalisi-della-varianza",
     "href": "presentations/sperimentali.html#lanalisi-della-varianza",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
-    "section": "L’analisi della Varianza",
-    "text": "L’analisi della Varianza"
+    "section": "L’analisi della varianza",
+    "text": "L’analisi della varianza"
   },
   {
     "objectID": "presentations/numerici.html#contenuti",

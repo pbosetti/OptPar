@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0f2f6c2e84e01ec4900cb03678e5c9c9.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-9436f8cc673f68f5f55fa434ff16588e.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -146,17 +146,231 @@ Paolo Bosetti
 
   <p class="date">03 novembre 2025</p>
 </section>
-<section id="contenuti-del-corso" class="slide level2">
-<h2>Contenuti del corso <i class="bi-card-list " style="" role="img" aria-hidden="true"></i></h2>
+<section id="contenuti" class="slide level2">
+<h2>Contenuti <i class="bi-card-list " style="" role="img" aria-hidden="true"></i></h2>
 <ul>
-<li>Ottimizzazione: cosa significa?</li>
-<li>Metodi analitici</li>
-<li>Metodi numerici</li>
-<li>Metodi sperimentali</li>
+<li>Cosa significa</li>
+<li>Superfici di risposta</li>
+<li>Modelli lineari</li>
+<li><em>Design of Experiments</em></li>
 </ul>
+</section>
+<section>
+<section id="cosa-significa" class="title-slide slide level1 center">
+<h1>Cosa significa</h1>
+<p>Cos’è l’ottimizzazione sperimentale</p>
+</section>
+<section id="ottimizzare-il-processo" class="slide level2">
+<h2>Ottimizzare il processo</h2>
+<div class="columns">
+<div class="column">
+<p>Se non si dispone di un modello analitico o numerico del processo, come possiamo individuare le condizioni operative più favorevoli?</p>
+<p>È necessario esplorare il <strong>dominio</strong> dei parametri, valutando la resa del processo nelle varie combinazioni</p>
+</div><div class="column">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="480" height="384" viewbox="0.00 0.00 253.77 152.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 148)">
+<title>pdiagram</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-148 249.77,-148 249.77,4 -4,4"></polygon>
+<!-- P1 -->
+<g id="node1" class="node">
+<title>P1</title>
+<polygon fill="none" stroke="black" points="54,-144 0,-144 0,-108 54,-108 54,-144"></polygon>
+<text text-anchor="middle" x="27" y="-121.8" font-family="Times,serif" font-size="14.00">P1</text>
+</g>
+<!-- Processo -->
+<g id="node4" class="node">
+<title>Processo</title>
+<polygon fill="none" stroke="black" points="155.66,-90 90.11,-90 90.11,-54 155.66,-54 155.66,-90"></polygon>
+<text text-anchor="middle" x="122.89" y="-67.8" font-family="Times,serif" font-size="14.00">Processo</text>
+</g>
+<!-- P1&#45;&gt;Processo -->
+<g id="edge1" class="edge">
+<title>P1-&gt;Processo</title>
+<path fill="none" stroke="black" d="M54.15,-110.96C62.7,-106.04 72.41,-100.46 81.75,-95.08"></path>
+<polygon fill="black" stroke="black" points="83.62,-98.05 90.54,-90.03 80.13,-91.98 83.62,-98.05"></polygon>
+</g>
+<!-- P2 -->
+<g id="node2" class="node">
+<title>P2</title>
+<polygon fill="none" stroke="black" points="54,-90 0,-90 0,-54 54,-54 54,-90"></polygon>
+<text text-anchor="middle" x="27" y="-67.8" font-family="Times,serif" font-size="14.00">P2</text>
+</g>
+<!-- P2&#45;&gt;Processo -->
+<g id="edge2" class="edge">
+<title>P2-&gt;Processo</title>
+<path fill="none" stroke="black" d="M54.15,-72C62.11,-72 71.06,-72 79.79,-72"></path>
+<polygon fill="black" stroke="black" points="79.86,-75.5 89.86,-72 79.86,-68.5 79.86,-75.5"></polygon>
+</g>
+<!-- P3 -->
+<g id="node3" class="node">
+<title>P3</title>
+<polygon fill="none" stroke="black" points="54,-36 0,-36 0,0 54,0 54,-36"></polygon>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">P3</text>
+</g>
+<!-- P3&#45;&gt;Processo -->
+<g id="edge3" class="edge">
+<title>P3-&gt;Processo</title>
+<path fill="none" stroke="black" d="M54.15,-33.04C62.7,-37.96 72.41,-43.54 81.75,-48.92"></path>
+<polygon fill="black" stroke="black" points="80.13,-52.02 90.54,-53.97 83.62,-45.95 80.13,-52.02"></polygon>
+</g>
+<!-- Resa -->
+<g id="node5" class="node">
+<title>Resa</title>
+<polygon fill="none" stroke="black" points="245.77,-90 191.77,-90 191.77,-54 245.77,-54 245.77,-90"></polygon>
+<text text-anchor="middle" x="218.77" y="-67.8" font-family="Times,serif" font-size="14.00">Resa</text>
+</g>
+<!-- Processo&#45;&gt;Resa -->
+<g id="edge4" class="edge">
+<title>Processo-&gt;Resa</title>
+<path fill="none" stroke="black" d="M155.67,-72C163.99,-72 173.02,-72 181.56,-72"></path>
+<polygon fill="black" stroke="black" points="181.64,-75.5 191.64,-72 181.64,-68.5 181.64,-75.5"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Avviso</strong></p>
+</div>
+<div class="callout-content">
+<p>Se i parametri di processo sono numerosi, il numero di combinazioni di processo da verificare può diventare rapidamente eccessivo</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="superficie-di-risposta" class="title-slide slide level1 center">
+<h1>Superficie di risposta</h1>
+<p>Come descrivere la relazione tra ingressi e resa del processo</p>
+</section>
+<section id="la-superficie-di-risposta-esempio" class="slide level2">
+<h2>La superficie di risposta: esempio</h2>
+<div class="columns">
+<div class="column">
+<p>Esempio pratico:</p>
+<ul>
+<li>Processo: tornitura</li>
+<li>Parametri: velocità di taglio e angolo di spoglia</li>
+<li>Resa: vita utensile</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Come si legge la superficie di risposta?</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/respsurf-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="la-superficie-di-risposta-esempio-1" class="slide level2">
+<h2>La superficie di risposta: esempio</h2>
+<div class="columns">
+<div class="column">
+<p>Sulla superficie:</p>
+<ul>
+<li>il punto <strong>M</strong> rappresenta un massimo (ottimo) della resa</li>
+<li>il punto <strong>S</strong> rappresenta un punto stazionario della resa</li>
+<li>in un generico punto <strong>P</strong>, le curve di livello indicano direzioni invarianti della resa</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Sono informazioni essenziali per l’economia del processo!</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-3-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="come-si-calcola-una-superficie-di-risposta" class="slide level2">
+<h2>Come si calcola una superficie di risposta?</h2>
+<div class="columns">
+<div class="column">
+<p>È l’analogo multi-dimensionale di una relazione <span class="math inline">\(y=f(x)\)</span>, ma:</p>
+<ul>
+<li>più cresce il numero di parametri più è difficile visualizzarla</li>
+<li>più cresce il numero di parametri più è <strong>costoso</strong> realizzarla</li>
+</ul>
+<p>Ci serve:</p>
+<ul>
+<li>sapere come costruire un modello</li>
+<li>sapere come organizzare le combinazioni di parametri minimizzandone il numero</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="sperimentali_files/figure-revealjs/unnamed-chunk-4-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section id="modelli-lineari" class="title-slide slide level1 center">
+<h1>Modelli lineari</h1>
+<p>Come approssimare un fenomeno con una relazione empirica</p>
+</section>
 
+<section>
+<section id="design-of-experiments" class="title-slide slide level1 center">
+<h1><em>Design of Experiments</em></h1>
 
 </section>
+<section id="i-piani-fattoriali" class="slide level2">
+<h2>I piani fattoriali</h2>
+</section>
+<section id="lanalisi-della-varianza" class="slide level2">
+<h2>L’analisi della Varianza</h2>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../images/marchio_unitrento_colore_it.png" class="slide-logo"></p>
@@ -375,6 +589,44 @@ Paolo Bosetti
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

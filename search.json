@@ -256,7 +256,7 @@
     "href": "presentations/sperimentali.html#modello-lineare-semplice",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Modello lineare semplice",
-    "text": "Modello lineare semplice\nIl modello lineare più semplice immaginabile + \\(y=a + bx\\), ma attenzione alle definizioni\n\nlineare significa che la relazione è una combinazione lineare dei coefficienti\ncombinazione lineare significa una somma di termini moltiplicati ciascuno per un fattore (cioè un polinomio)\n\nSecondo queste definizioni, anche \\(y=a + bx + cx^2\\) è un modello lineare nei coefficienti \\(a, b, c\\), così come lo è qualsiasi polinomio in \\(x\\) di grado \\(k\\)\n\n\n\n\n\n\nNote\n\n\n\nI modelli lineari sono particolarmente utili perché semplici da trattare, pur essendo adatti a rappresentare un’ampia gamma di fenomeni\nIn generale, per un modello di grado \\(k\\) servono almeno \\(k+1\\) livelli della variabile indipendente \\(x\\) (chiamati trattamenti)"
+    "text": "Modello lineare semplice\nIl modello lineare più semplice immaginabile è \\(y=a + bx\\), ma attenzione alle definizioni\n\nlineare significa che la relazione è una combinazione lineare dei coefficienti\ncombinazione lineare significa una somma di termini moltiplicati ciascuno per un fattore (cioè un polinomio)\n\nSecondo queste definizioni, anche \\(y=a + bx + cx^2\\) è un modello lineare nei coefficienti \\(a, b, c\\), così come lo è qualsiasi polinomio in \\(x\\) di grado \\(k\\)\n\n\n\n\n\n\nNote\n\n\n\nI modelli lineari sono particolarmente utili perché semplici da trattare, pur essendo adatti a rappresentare un’ampia gamma di fenomeni\nIn generale, per un modello di grado \\(k\\) servono almeno \\(k+1\\) livelli della variabile indipendente \\(x\\) (chiamati trattamenti)"
   },
   {
     "objectID": "presentations/sperimentali.html#modelli-lineari-in-n-dimensioni",
@@ -319,14 +319,42 @@
     "href": "presentations/sperimentali.html#risorse-online",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
     "section": "Risorse online",
-    "text": "Risorse online\nLivello base, utilizzando Excel per trattare i dati:\n\nQuality Tools, by American Society for Quality\nDoE Excel template, by American Society for Quality\n\nLivello evoluto (richiede programmazione)\n\nLinguaggio R\nLibreria R adas.utils"
+    "text": "Risorse online\nLivello base, utilizzando Excel per trattare i dati:\n\nQuality Tools, by American Society for Quality\nDoE Excel template, by American Society for Quality\n\nLivello evoluto (richiede programmazione)\n\nLinguaggio R\nLibreria R adas.utils\nLibrerya python statsmodels (se proprio ci tenete a Python…)"
   },
   {
-    "objectID": "presentations/sperimentali.html#lanalisi-della-varianza",
-    "href": "presentations/sperimentali.html#lanalisi-della-varianza",
+    "objectID": "presentations/sperimentali.html#importiamo-i-dati",
+    "href": "presentations/sperimentali.html#importiamo-i-dati",
     "title": "Ottimizzazione dei parametri di un processo manifatturiero",
-    "section": "L’analisi della varianza",
-    "text": "L’analisi della varianza"
+    "section": "Importiamo i dati",
+    "text": "Importiamo i dati\n\n\n\nUsiamo\n\npandas per gestire dati in tabelle\nstatsmodels per l’analisi statistica\nplotnine per i grafici\n\nCominciamo caricando una piano fattoriale \\(2\\times3^2\\)\n\n\\(A\\) è l’angolo di spoglia (°)\n\\(B\\) è la velocità di taglio (m/min)\n\\(Y\\) è la variazione di vita utensile (10 min)\n\n\n\n\nimport numpy as np\nimport statsmodels.api as sm\nfrom statsmodels.formula.api import ols\nimport pandas as pd\ndf = pd.read_csv(\"cutting.csv\", comment=\"#\")\ndf\n\n    StdOrder  RunOrder  .rep  A  B  A_s  B_s  Y\n0          3         1     1  1 -1   25  125 -1\n1          1         2     1 -1 -1   15  125 -2\n2         10         3     2 -1 -1   15  125 -1\n3          8         4     1  0  1   20  175  4\n4          7         5     1 -1  1   15  175  2\n5          4         6     1 -1  0   15  150 -3\n6         17         7     2  0  1   20  175  6\n7          2         8     1  0 -1   20  125  0\n8         14         9     2  0  0   20  150  3\n9         11        10     2  0 -1   20  125  2\n10         9        11     1  1  1   25  175  0\n11         6        12     1  1  0   25  150  5\n12        12        13     2  1 -1   25  125  0\n13        15        14     2  1  0   25  150  6\n14         5        15     1  0  0   20  150  1\n15        18        16     2  1  1   25  175 -1\n16        16        17     2 -1  1   15  175  3\n17        13        18     2 -1  0   15  150  0"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#realizziamo-un-modello",
+    "href": "presentations/sperimentali.html#realizziamo-un-modello",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Realizziamo un modello",
+    "text": "Realizziamo un modello\n\n\n\nUn modello lineare è un polinomio (di qualsiasi grado) in \\(n\\) dimesioni\nLa regressione di un modello lineare identifica i coefficienti del polinomio\nSu un PF \\(3^2\\) possiamo regredire al massimo un polinomio quadratico\nUn polinomio in regressione è rappresentato con la notazione formula:\n\n\"Y ~ A*B\" corrisponde a \"Y ~ A + B + A:B\"\n\n\n\n\nmodel = ols(\n  \"Y~A*B+I(A**2)*I(B**2)+A:I(B^2)+B:I(A^2)\", \n  data=df)\nfit = model.fit()\nsm.stats.anova_lm(fit)\n\n                      df     sum_sq    mean_sq          F    PR(&gt;F)\nA                    1.0   8.333333   8.333333   5.769231  0.039772\nB                    1.0  21.333333  21.333333  14.769231  0.003948\nA:B                  1.0   8.000000   8.000000   5.538462  0.043065\nI(A ** 2)            1.0  16.000000  16.000000  11.076923  0.008824\nI(B ** 2)            1.0   4.000000   4.000000   2.769231  0.130451\nI(A ** 2):I(B ** 2)  1.0   8.000000   8.000000   5.538462  0.043065\nA:I(B ^ 2)           1.0  42.666667  42.666667  29.538462  0.000414\nB:I(A ^ 2)           1.0   2.666667   2.666667   1.846154  0.207306\nResidual             9.0  13.000000   1.444444        NaN       NaN"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#rifiniamo-il-modello",
+    "href": "presentations/sperimentali.html#rifiniamo-il-modello",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Rifiniamo il modello",
+    "text": "Rifiniamo il modello\n\n\nIl modello va rifinito rimuovendo tutti i termini statisticamente non significativi, cioè quelli per cui la colonna PR(&gt;F) è piccola (convenzionalmente minore del 5%)\n\n\nmodel = ols(\n  \"Y~A*B+I(A**2)+A:I(B**2)+I(A**2):I(B**2)\", \n  data=df)\nfit = model.fit()\nsm.stats.anova_lm(fit)\n\n                       df     sum_sq    mean_sq          F    PR(&gt;F)\nA                     1.0   8.333333   8.333333   5.392157  0.040428\nB                     1.0  21.333333  21.333333  13.803922  0.003409\nA:B                   1.0   8.000000   8.000000   5.176471  0.043906\nI(A ** 2)             1.0  16.000000  16.000000  10.352941  0.008194\nA:I(B ** 2)           1.0  42.666667  42.666667  27.607843  0.000271\nI(A ** 2):I(B ** 2)   1.0  10.666667  10.666667   6.901961  0.023526\nResidual             11.0  17.000000   1.545455        NaN       NaN\n\n\n\n\n\n\n\n\n\nIl p-value\n\n\nIl valore PR(&gt;F) è chiamato p-value. Un p-value pari al 5% significa che se il termine in questione non fosse significativo e ripetessimo l’esperimento 100 volte, osserveremo un valore di F così grande meno di 5 volte"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#generiamo-la-superficie-di-risposta",
+    "href": "presentations/sperimentali.html#generiamo-la-superficie-di-risposta",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Generiamo la superficie di risposta",
+    "text": "Generiamo la superficie di risposta\n\n\n\nSi usa il modello lineare per predire i valori della resa su una griglia più fitta di punti\n\n\n\nseq = np.linspace(-1, 1, 30)\nA_grid, B_grid = np.meshgrid(seq, seq)\ngrid = pd.DataFrame({\n    \"A\": A_grid.ravel(),\n    \"B\": B_grid.ravel()\n})\ngrid[\"Yhat\"] = fit.predict(grid)\n\n\n\n\n\n\n\n\nNota\n\n\nQuesto genere di analisi è evidentemente molto difficile da eseguire su un foglio di calcolo. Sono molto adatti linguaggi di alto livello come R, Matlab o python. In questo caso abbiamo usato quest’ultimo per diffusione, ma la stessa analisi risulterebbe molto più semplice in R\nEsistono anche software con interfaccia grafica dedicati a questo tipo di analisi (Minitab, Design-Expert, Stata), ma sono tutti a pagamento"
+  },
+  {
+    "objectID": "presentations/sperimentali.html#grafico-della-superficie-di-risposta",
+    "href": "presentations/sperimentali.html#grafico-della-superficie-di-risposta",
+    "title": "Ottimizzazione dei parametri di un processo manifatturiero",
+    "section": "Grafico della superficie di risposta",
+    "text": "Grafico della superficie di risposta\nLa griglia di punti può essere utilizzata per ottenere un grafico della superficie di risposta:\n\n\nfrom plotnine import *\np = (\n  ggplot(grid, aes(\"A\", \"B\"))\n  + geom_raster(aes(fill=\"Yhat\"), alpha=0.8)\n  + geom_point(data=df, \n    mapping=aes(\"A\", \"B\"), \n    color=\"red\", size=2)\n  + labs(x=\"A\",y=\"B\",fill=\"Y\")\n)\np.show()"
   },
   {
     "objectID": "presentations/numerici.html#contenuti",
